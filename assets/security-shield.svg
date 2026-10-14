@@ -1,0 +1,38 @@
+﻿<svg width="420" height="420" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="40" y1="30" x2="360" y2="390" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0C233A"/>
+      <stop offset="1" stop-color="#071722"/>
+    </linearGradient>
+    <linearGradient id="line" x1="90" y1="80" x2="350" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#73E9FF"/>
+      <stop offset="1" stop-color="#7EF0D0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="420" height="420" rx="30" fill="url(#bg)"/>
+  <circle cx="210" cy="210" r="128" stroke="url(#line)" stroke-width="2"/>
+  <circle cx="210" cy="210" r="94" stroke="#8EEBFF" stroke-opacity="0.6" stroke-width="1.5"/>
+  <circle cx="210" cy="210" r="160" stroke="#8EEBFF" stroke-opacity="0.25" stroke-width="1.2"/>
+  <path d="M82 210H338" stroke="#8EEBFF" stroke-opacity="0.8"/>
+  <path d="M210 82V338" stroke="#8EEBFF" stroke-opacity="0.8"/>
+  <path d="M116 122L304 298" stroke="#8EEBFF" stroke-opacity="0.6"/>
+  <path d="M304 122L116 298" stroke="#8EEBFF" stroke-opacity="0.6"/>
+
+  <g fill="#7FE9FF">
+    <circle cx="210" cy="82" r="7"/>
+    <circle cx="210" cy="338" r="7"/>
+    <circle cx="82" cy="210" r="7"/>
+    <circle cx="338" cy="210" r="7"/>
+    <circle cx="116" cy="122" r="6"/>
+    <circle cx="304" cy="122" r="6"/>
+    <circle cx="304" cy="298" r="6"/>
+    <circle cx="116" cy="298" r="6"/>
+  </g>
+
+  <g>
+    <path d="M166 283L210 241L254 283" stroke="#F7C56D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M177 223C177 203 193 187 213 187H221C241 187 257 203 257 223V284H177V223Z" fill="#0E2132" stroke="#7FE9FF" stroke-width="1.5"/>
+    <circle cx="217" cy="218" r="13" fill="#F7C56D"/>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+﻿<svg width="420" height="420" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="aiBg" x1="0" y1="0" x2="420" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B2137"/>
+      <stop offset="1" stop-color="#071722"/>
+    </linearGradient>
+    <linearGradient id="aiLine" x1="70" y1="70" x2="330" y2="330" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#73E9FF"/>
+      <stop offset="1" stop-color="#7EF0D0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="420" height="420" rx="32" fill="url(#aiBg)"/>
+  <path d="M81 274C118 225 162 198 210 198C258 198 302 225 339 274" stroke="url(#aiLine)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M121 306C154 267 179 248 210 248C241 248 266 267 299 306" stroke="#8EEBFF" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="210" cy="135" r="52" fill="#0E2234" stroke="url(#aiLine)" stroke-width="2"/>
+  <circle cx="180" cy="135" r="10" fill="#7FE9FF"/>
+  <circle cx="210" cy="135" r="10" fill="#F7C56D"/>
+  <circle cx="240" cy="135" r="10" fill="#7FE9FF"/>
+  <path d="M170 174H250" stroke="#7FE9FF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M145 198L110 259" stroke="#8EEBFF" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round"/>
+  <path d="M275 198L310 259" stroke="#8EEBFF" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round"/>
+</svg>
