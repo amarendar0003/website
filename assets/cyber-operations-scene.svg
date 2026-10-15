@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1120" viewBox="0 0 960 1120" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="90" y1="20" x2="830" y2="1100" gradientUnits="userSpaceOnUse"><stop stop-color="#124458"/><stop offset=".56" stop-color="#0A2839"/><stop offset="1" stop-color="#061722"/></linearGradient>
+    <linearGradient id="screen" x1="266" y1="180" x2="784" y2="606" gradientUnits="userSpaceOnUse"><stop stop-color="#123C50"/><stop offset="1" stop-color="#081C2A"/></linearGradient>
+    <linearGradient id="fade" x1="480" y1="370" x2="480" y2="1120" gradientUnits="userSpaceOnUse"><stop stop-color="#061722" stop-opacity="0"/><stop offset=".62" stop-color="#061722" stop-opacity=".93"/><stop offset="1" stop-color="#061722"/></linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="#B7EBFA" stroke-opacity=".08"/></pattern>
+  </defs>
+  <rect width="960" height="1120" fill="url(#bg)"/><rect width="960" height="1120" fill="url(#grid)"/>
+  <circle cx="715" cy="204" r="226" fill="#49C7D1" fill-opacity=".1"/>
+  <path d="M0 820L960 655V1120H0V820Z" fill="#061722" fill-opacity=".62"/>
+  <g transform="translate(84 130)">
+    <rect width="792" height="500" rx="28" fill="url(#screen)" stroke="#A7EEF2" stroke-opacity=".48" stroke-width="2"/>
+    <path d="M0 78H792" stroke="#A7EEF2" stroke-opacity=".24" stroke-width="2"/>
+    <circle cx="40" cy="39" r="7" fill="#F4C67A"/><circle cx="66" cy="39" r="7" fill="#78E2D5"/><circle cx="92" cy="39" r="7" fill="#61BEE2"/>
+    <text x="42" y="121" fill="#A8D4E1" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2">LIVE SECURITY OVERVIEW</text>
+    <rect x="40" y="150" width="420" height="294" rx="18" fill="#071A28" stroke="#5DCAD8" stroke-opacity=".34"/>
+    <path d="M78 378L143 331L198 346L264 264L317 290L411 205" stroke="#72E7D9" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M78 400H420M78 353H420M78 306H420M78 259H420M78 212H420" stroke="#9BD8E4" stroke-opacity=".12" stroke-width="2"/>
+    <path d="M78 195V405M162 195V405M246 195V405M330 195V405M414 195V405" stroke="#9BD8E4" stroke-opacity=".1" stroke-width="2"/>
+    <circle cx="264" cy="264" r="9" fill="#F5C77B"/><circle cx="411" cy="205" r="9" fill="#72E7D9"/>
+    <rect x="492" y="150" width="260" height="138" rx="18" fill="#0B2232" stroke="#6BD8E0" stroke-opacity=".28"/>
+    <text x="518" y="187" fill="#A8D4E1" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="1">CONTROL STATUS</text>
+    <circle cx="557" cy="237" r="26" fill="#72E7D9" fill-opacity=".12" stroke="#72E7D9" stroke-width="2"/>
+    <path d="M545 237L554 246L570 227" stroke="#8AF0D7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M600 224H718M600 250H686" stroke="#89BECE" stroke-opacity=".48" stroke-width="8" stroke-linecap="round"/>
+    <rect x="492" y="308" width="260" height="136" rx="18" fill="#0B2232" stroke="#6BD8E0" stroke-opacity=".28"/>
+    <text x="518" y="344" fill="#A8D4E1" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="1">RESPONSE WORKFLOW</text>
+    <path d="M528 386H714" stroke="#6AD6DB" stroke-opacity=".6" stroke-width="3"/>
+    <circle cx="540" cy="386" r="11" fill="#F5C77B"/><circle cx="624" cy="386" r="11" fill="#75E3D9"/><circle cx="710" cy="386" r="11" fill="#75E3D9"/>
+    <path d="M540 407V425M624 407V425M710 407V425" stroke="#8CBAC8" stroke-opacity=".48" stroke-width="2"/>
+  </g>
+  <g transform="translate(144 687)">
+    <rect width="672" height="180" rx="24" fill="#0A2231" stroke="#88DFE8" stroke-opacity=".3"/>
+    <text x="30" y="43" fill="#9DCDDA" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2">RESILIENCE BY DESIGN</text>
+    <path d="M46 90H626" stroke="#5ABBCB" stroke-opacity=".42" stroke-width="3"/>
+    <g fill="#133B4B" stroke="#71D6DC" stroke-width="2">
+      <rect x="48" y="74" width="108" height="68" rx="15"/><rect x="202" y="74" width="108" height="68" rx="15"/><rect x="356" y="74" width="108" height="68" rx="15"/><rect x="510" y="74" width="108" height="68" rx="15"/>
+    </g>
+    <g fill="#A9D8E4" font-family="Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle">
+      <text x="102" y="114">ASSESS</text><text x="256" y="114">PREPARE</text><text x="410" y="114">RESPOND</text><text x="564" y="114">RECOVER</text>
+    </g>
+  </g>
+  <rect width="960" height="1120" fill="url(#fade)"/>
+</svg>

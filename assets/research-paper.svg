@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="45" y1="10" x2="720" y2="410" gradientUnits="userSpaceOnUse"><stop stop-color="#1B4860"/><stop offset="1" stop-color="#091D2B"/></linearGradient>
+    <linearGradient id="page" x1="387" y1="70" x2="587" y2="349" gradientUnits="userSpaceOnUse"><stop stop-color="#F2F8F3"/><stop offset="1" stop-color="#C7DDE0"/></linearGradient>
+  </defs>
+  <rect width="760" height="420" rx="25" fill="url(#bg)"/>
+  <circle cx="145" cy="112" r="165" fill="#60CED7" fill-opacity=".13"/>
+  <path d="M0 327C171 263 298 292 424 352C537 406 639 383 760 317V420H0V327Z" fill="#061722" fill-opacity=".6"/>
+  <g transform="rotate(-7 480 210)">
+    <rect x="341" y="62" width="260" height="302" rx="18" fill="#071722" fill-opacity=".42"/>
+    <rect x="323" y="46" width="260" height="302" rx="18" fill="url(#page)"/>
+    <rect x="348" y="72" width="89" height="20" rx="10" fill="#337E86"/>
+    <text x="348" y="132" fill="#173846" font-family="Arial,sans-serif" font-size="21" font-weight="700">RESEARCH</text>
+    <text x="348" y="158" fill="#557580" font-family="Arial,sans-serif" font-size="13">DIGITAL GOVERNANCE SERIES</text>
+    <path d="M348 186H546M348 206H532M348 226H543M348 246H509" stroke="#98B5BA" stroke-width="7" stroke-linecap="round"/>
+    <rect x="348" y="273" width="195" height="50" rx="10" fill="#D6E9E4"/>
+    <path d="M362 303L391 290L416 300L446 282L476 291L515 278" stroke="#398F89" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(72 130)">
+    <circle cx="74" cy="74" r="63" fill="#0A2637" stroke="#78DDD7" stroke-opacity=".62" stroke-width="2"/>
+    <circle cx="74" cy="74" r="38" stroke="#7FDCD7" stroke-opacity=".58" stroke-width="2"/>
+    <path d="M11 74H137M74 11V137" stroke="#7FDCD7" stroke-opacity=".46" stroke-width="2"/>
+    <circle cx="74" cy="74" r="9" fill="#EBC77D"/>
+    <path d="M125 20L172 1M135 112L179 130" stroke="#8DE5DD" stroke-width="2"/>
+    <circle cx="174" cy="0" r="5" fill="#8DE5DD"/><circle cx="181" cy="131" r="5" fill="#EBC77D"/>
+  </g>
+</svg>

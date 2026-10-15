@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1120" viewBox="0 0 960 1120" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="34" y1="28" x2="916" y2="1065" gradientUnits="userSpaceOnUse"><stop stop-color="#403759"/><stop offset=".52" stop-color="#192D45"/><stop offset="1" stop-color="#071722"/></linearGradient>
+    <linearGradient id="fade" x1="480" y1="440" x2="480" y2="1120" gradientUnits="userSpaceOnUse"><stop stop-color="#061722" stop-opacity="0"/><stop offset=".59" stop-color="#061722" stop-opacity=".93"/><stop offset="1" stop-color="#061722"/></linearGradient>
+    <linearGradient id="glass" x1="282" y1="240" x2="710" y2="723" gradientUnits="userSpaceOnUse"><stop stop-color="#153C51"/><stop offset="1" stop-color="#0A1F30"/></linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="#C9DDFF" stroke-opacity=".07"/></pattern>
+  </defs>
+  <rect width="960" height="1120" fill="url(#bg)"/><rect width="960" height="1120" fill="url(#grid)"/>
+  <circle cx="756" cy="211" r="220" fill="#D1A6EC" fill-opacity=".12"/>
+  <path d="M0 694L170 595L296 642L462 504L620 567L796 444L960 522V1120H0V694Z" fill="#0A1E2C" fill-opacity=".86"/>
+  <path d="M0 720L171 617L296 659L462 527L620 584L796 468L960 542" stroke="#6AC8D9" stroke-opacity=".32" stroke-width="3"/>
+  <g fill="#122D40" stroke="#71D6DC" stroke-opacity=".44" stroke-width="2">
+    <path d="M69 682L179 618L294 675V900H69V682Z"/><path d="M304 663L436 535L565 615V912H304V663Z"/><path d="M584 632L738 518L887 593V904H584V632Z"/>
+  </g>
+  <g stroke="#6FCED8" stroke-opacity=".36" stroke-width="3">
+    <path d="M100 723H263M100 767H263M100 811H263M100 855H263"/>
+    <path d="M339 678H531M339 727H531M339 776H531M339 825H531M339 874H531"/>
+    <path d="M626 673H844M626 725H844M626 777H844M626 829H844M626 881H844"/>
+  </g>
+  <g fill="#F0C97D">
+    <circle cx="181" cy="746" r="8"/><circle cx="436" cy="699" r="8"/><circle cx="738" cy="697" r="8"/>
+  </g>
+  <g stroke="#6EDDD9" stroke-width="3" stroke-opacity=".72">
+    <path d="M181 746L436 699L738 697"/><path d="M436 699L436 373L688 336"/><path d="M181 746L246 413L498 332L688 336"/>
+  </g>
+  <g>
+    <circle cx="246" cy="413" r="25" fill="#102F42" stroke="#75E2DE" stroke-width="3"/><path d="M235 414L244 423L259 405" stroke="#F3CD84" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="498" cy="332" r="25" fill="#102F42" stroke="#75E2DE" stroke-width="3"/><path d="M487 333L496 342L511 324" stroke="#F3CD84" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="688" cy="336" r="25" fill="#102F42" stroke="#75E2DE" stroke-width="3"/><path d="M677 337L686 346L701 328" stroke="#F3CD84" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(80 114)">
+    <rect width="386" height="162" rx="23" fill="url(#glass)" stroke="#8CE5EA" stroke-opacity=".5"/>
+    <text x="29" y="43" fill="#A8D5DF" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2">TRUSTED DIGITAL ECOSYSTEM</text>
+    <path d="M44 112H342" stroke="#64C9D3" stroke-width="2" stroke-opacity=".68"/>
+    <g fill="#11374A" stroke="#7CDEE0" stroke-width="2">
+      <rect x="43" y="82" width="76" height="58" rx="14"/><rect x="151" y="82" width="76" height="58" rx="14"/><rect x="259" y="82" width="76" height="58" rx="14"/>
+    </g>
+    <g fill="#B6DEE5" font-family="Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle">
+      <text x="81" y="115">PUBLIC</text><text x="189" y="115">PRIVATE</text><text x="297" y="115">PEOPLE</text>
+    </g>
+  </g>
+  <g transform="translate(588 164)">
+    <rect width="276" height="142" rx="22" fill="#0A2233" stroke="#E8C77D" stroke-opacity=".52"/>
+    <circle cx="55" cy="71" r="25" fill="#E8C77D" fill-opacity=".14" stroke="#E8C77D" stroke-width="2"/>
+    <path d="M55 56V86M40 71H70" stroke="#F1D493" stroke-width="3" stroke-linecap="round"/>
+    <text x="99" y="65" fill="#EAF7F9" font-family="Arial,sans-serif" font-size="15" font-weight="700">SOVEREIGN</text>
+    <text x="99" y="88" fill="#A7C8D1" font-family="Arial,sans-serif" font-size="14">BY DESIGN</text>
+  </g>
+  <rect width="960" height="1120" fill="url(#fade)"/>
+</svg>

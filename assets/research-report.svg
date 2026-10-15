@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420" fill="none">
+  <defs><linearGradient id="bg" x1="31" y1="14" x2="741" y2="413" gradientUnits="userSpaceOnUse"><stop stop-color="#463B58"/><stop offset=".54" stop-color="#173347"/><stop offset="1" stop-color="#081B29"/></linearGradient></defs>
+  <rect width="760" height="420" rx="25" fill="url(#bg)"/>
+  <circle cx="118" cy="89" r="154" fill="#84DAD6" fill-opacity=".1"/>
+  <path d="M0 343L171 290L304 342L445 277L590 319L760 249V420H0V343Z" fill="#071722" fill-opacity=".67"/>
+  <g transform="translate(66 66)">
+    <rect width="628" height="290" rx="22" fill="#0A2131" stroke="#8DD9E2" stroke-opacity=".38" stroke-width="2"/>
+    <text x="29" y="43" fill="#A9D5DF" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2">SECTOR RISK LANDSCAPE</text>
+    <path d="M31 70H596" stroke="#8CC4D0" stroke-opacity=".3" stroke-width="2"/>
+    <g transform="translate(45 97)">
+      <path d="M0 144H530M0 103H530M0 62H530M0 21H530" stroke="#9BC9D3" stroke-opacity=".13" stroke-width="2"/>
+      <path d="M20 130L102 108L186 118L267 72L356 88L431 39L510 50" stroke="#73E1D9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M20 143V14M102 143V14M184 143V14M266 143V14M348 143V14M430 143V14M512 143V14" stroke="#9BC9D3" stroke-opacity=".1" stroke-width="2"/>
+      <circle cx="267" cy="72" r="7" fill="#E9C77D"/><circle cx="431" cy="39" r="7" fill="#73E1D9"/>
+    </g>
+    <g transform="translate(445 88)">
+      <rect width="148" height="44" rx="12" fill="#17394A" stroke="#E6C67E" stroke-opacity=".5"/>
+      <circle cx="22" cy="22" r="6" fill="#E9C77D"/>
+      <text x="39" y="27" fill="#E9D69B" font-family="Arial,sans-serif" font-size="12" font-weight="700">RISK SIGNALS</text>
+    </g>
+  </g>
+</svg>

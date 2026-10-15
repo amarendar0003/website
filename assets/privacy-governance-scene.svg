@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1120" viewBox="0 0 960 1120" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="0" x2="900" y2="1100" gradientUnits="userSpaceOnUse"><stop stop-color="#343858"/><stop offset=".48" stop-color="#172D42"/><stop offset="1" stop-color="#071722"/></linearGradient>
+    <linearGradient id="doc" x1="249" y1="155" x2="708" y2="717" gradientUnits="userSpaceOnUse"><stop stop-color="#EDF9F6"/><stop offset="1" stop-color="#B9D6DC"/></linearGradient>
+    <linearGradient id="fade" x1="480" y1="470" x2="480" y2="1120" gradientUnits="userSpaceOnUse"><stop stop-color="#061722" stop-opacity="0"/><stop offset=".58" stop-color="#061722" stop-opacity=".94"/><stop offset="1" stop-color="#061722"/></linearGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M42 0H0V42" stroke="#D4E9FF" stroke-opacity=".07"/></pattern>
+  </defs>
+  <rect width="960" height="1120" fill="url(#bg)"/><rect width="960" height="1120" fill="url(#grid)"/>
+  <circle cx="752" cy="254" r="220" fill="#CEB8F3" fill-opacity=".11"/>
+  <g transform="translate(222 114) rotate(-4 260 320)">
+    <rect x="24" y="30" width="500" height="610" rx="28" fill="#061722" fill-opacity=".36"/>
+    <rect width="500" height="610" rx="26" fill="url(#doc)"/>
+    <rect x="34" y="32" width="432" height="76" rx="16" fill="#D8E8E8"/>
+    <circle cx="76" cy="70" r="20" fill="#327E83" fill-opacity=".16"/>
+    <path d="M69 69L75 75L85 64" stroke="#328D86" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="112" y="66" fill="#173A4A" font-family="Arial,sans-serif" font-size="17" font-weight="700">PRIVACY IMPACT REVIEW</text>
+    <text x="112" y="87" fill="#5B7885" font-family="Arial,sans-serif" font-size="12">DATA GOVERNANCE • CONTROL RECORD</text>
+    <text x="42" y="157" fill="#234959" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="1">PROCESSING PURPOSE</text>
+    <rect x="42" y="173" width="376" height="12" rx="6" fill="#96B3BA"/>
+    <rect x="42" y="197" width="316" height="9" rx="4.5" fill="#B0C4C8"/>
+    <text x="42" y="250" fill="#234959" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="1">DATA INVENTORY</text>
+    <g>
+      <rect x="42" y="267" width="416" height="57" rx="12" fill="#F5FBF8" stroke="#B6D1D4"/>
+      <circle cx="68" cy="295" r="9" fill="#64BEB1"/><path d="M92 286H280M92 304H225" stroke="#8EADB3" stroke-width="7" stroke-linecap="round"/>
+      <rect x="42" y="337" width="416" height="57" rx="12" fill="#F5FBF8" stroke="#B6D1D4"/>
+      <circle cx="68" cy="365" r="9" fill="#F0C178"/><path d="M92 356H320M92 374H257" stroke="#8EADB3" stroke-width="7" stroke-linecap="round"/>
+      <rect x="42" y="407" width="416" height="57" rx="12" fill="#F5FBF8" stroke="#B6D1D4"/>
+      <circle cx="68" cy="435" r="9" fill="#64BEB1"/><path d="M92 426H295M92 444H363" stroke="#8EADB3" stroke-width="7" stroke-linecap="round"/>
+    </g>
+    <text x="42" y="513" fill="#234959" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="1">ACCOUNTABILITY CHECKS</text>
+    <rect x="42" y="529" width="416" height="52" rx="13" fill="#D6EAE5"/>
+    <path d="M64 555L73 564L89 545" stroke="#348E83" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M108 549H274M108 565H222" stroke="#7E9FA7" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(89 290)">
+    <rect width="204" height="98" rx="20" fill="#0A2637" stroke="#86E8E1" stroke-opacity=".55"/>
+    <circle cx="42" cy="48" r="19" fill="#73DFD1" fill-opacity=".15" stroke="#73DFD1"/>
+    <path d="M34 48L41 55L52 41" stroke="#8BF0DC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="74" y="43" fill="#EAF7F9" font-family="Arial,sans-serif" font-size="15" font-weight="700">PURPOSE</text>
+    <text x="74" y="64" fill="#A7C8D1" font-family="Arial,sans-serif" font-size="13">AND LAWFUL USE</text>
+  </g>
+  <g transform="translate(655 616)">
+    <rect width="226" height="108" rx="20" fill="#0A2637" stroke="#EBC987" stroke-opacity=".6"/>
+    <path d="M39 24L60 32V49C60 66 51 77 39 83C27 77 18 66 18 49V32L39 24Z" fill="#183D4D" stroke="#EBC987" stroke-width="2"/>
+    <path d="M30 50L37 57L49 42" stroke="#F3D28F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="47" fill="#EAF7F9" font-family="Arial,sans-serif" font-size="15" font-weight="700">PRIVACY</text>
+    <text x="80" y="69" fill="#A7C8D1" font-family="Arial,sans-serif" font-size="13">BY DESIGN</text>
+  </g>
+  <rect width="960" height="1120" fill="url(#fade)"/>
+</svg>

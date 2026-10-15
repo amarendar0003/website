@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="800" viewBox="0 0 960 800" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="75" y1="25" x2="881" y2="766" gradientUnits="userSpaceOnUse"><stop stop-color="#163D51"/><stop offset=".54" stop-color="#0B2638"/><stop offset="1" stop-color="#071722"/></linearGradient>
+    <linearGradient id="glow" x1="209" y1="166" x2="740" y2="634" gradientUnits="userSpaceOnUse"><stop stop-color="#72E8DB"/><stop offset="1" stop-color="#4BA6D0"/></linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="#D8F2FA" stroke-opacity=".075"/></pattern>
+  </defs>
+  <rect width="960" height="800" rx="30" fill="url(#bg)"/><rect width="960" height="800" rx="30" fill="url(#grid)"/>
+  <circle cx="767" cy="113" r="184" fill="#72E8DB" fill-opacity=".1"/>
+  <g transform="translate(104 106)">
+    <rect width="752" height="588" rx="26" fill="#071B29" fill-opacity=".75" stroke="#8CE6EC" stroke-opacity=".32" stroke-width="2"/>
+    <text x="36" y="48" fill="#AED8E2" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2">A CONNECTED SECURITY FRAMEWORK</text>
+    <path d="M376 112V486M158 298H594" stroke="#73D6DC" stroke-opacity=".3" stroke-width="2"/>
+    <path d="M203 175L376 298L548 175M203 420L376 298L548 420" stroke="url(#glow)" stroke-opacity=".68" stroke-width="3"/>
+    <g>
+      <rect x="70" y="98" width="262" height="152" rx="21" fill="#103246" stroke="#73DCD9" stroke-width="2"/>
+      <circle cx="111" cy="140" r="20" fill="#71DED2" fill-opacity=".18" stroke="#71DED2" stroke-width="2"/>
+      <path d="M101 140L109 148L123 132" stroke="#8DF0DA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="145" y="137" fill="#E8F7F9" font-family="Arial,sans-serif" font-size="17" font-weight="700">GOVERNANCE</text>
+      <text x="101" y="191" fill="#A6CAD4" font-family="Arial,sans-serif" font-size="13">Roles • policies • accountability</text>
+      <path d="M101 216H290" stroke="#76D9DA" stroke-opacity=".48" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <g>
+      <rect x="420" y="98" width="262" height="152" rx="21" fill="#103246" stroke="#7ABAE6" stroke-width="2"/>
+      <circle cx="461" cy="140" r="20" fill="#76BFE8" fill-opacity=".18" stroke="#76BFE8" stroke-width="2"/>
+      <path d="M449 140H473M461 128V152" stroke="#A8D9F4" stroke-width="3" stroke-linecap="round"/>
+      <text x="495" y="137" fill="#E8F7F9" font-family="Arial,sans-serif" font-size="17" font-weight="700">TECHNOLOGY</text>
+      <text x="451" y="191" fill="#A6CAD4" font-family="Arial,sans-serif" font-size="13">Controls • architecture • response</text>
+      <path d="M451 216H640" stroke="#78BEE2" stroke-opacity=".5" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <g>
+      <rect x="70" y="346" width="262" height="152" rx="21" fill="#103246" stroke="#E6C67F" stroke-width="2"/>
+      <circle cx="111" cy="388" r="20" fill="#E6C67F" fill-opacity=".16" stroke="#E6C67F" stroke-width="2"/>
+      <path d="M101 388H121M111 378V398" stroke="#F3D998" stroke-width="3" stroke-linecap="round"/>
+      <text x="145" y="385" fill="#E8F7F9" font-family="Arial,sans-serif" font-size="17" font-weight="700">PRIVACY</text>
+      <text x="101" y="439" fill="#A6CAD4" font-family="Arial,sans-serif" font-size="13">Data rights • lifecycle • compliance</text>
+      <path d="M101 464H290" stroke="#E6C67F" stroke-opacity=".52" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <g>
+      <rect x="420" y="346" width="262" height="152" rx="21" fill="#103246" stroke="#78DCCF" stroke-width="2"/>
+      <circle cx="461" cy="388" r="20" fill="#78DCCF" fill-opacity=".16" stroke="#78DCCF" stroke-width="2"/>
+      <path d="M449 388L458 397L474 379" stroke="#96F1DF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="495" y="385" fill="#E8F7F9" font-family="Arial,sans-serif" font-size="17" font-weight="700">PEOPLE</text>
+      <text x="451" y="439" fill="#A6CAD4" font-family="Arial,sans-serif" font-size="13">Skills • culture • readiness</text>
+      <path d="M451 464H640" stroke="#78DCCF" stroke-opacity=".52" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <circle cx="376" cy="298" r="58" fill="#0C293A" stroke="url(#glow)" stroke-width="3"/>
+    <path d="M376 267L402 279V302C402 325 390 340 376 348C362 340 350 325 350 302V279L376 267Z" fill="#14394A" stroke="#E8C67C" stroke-width="2"/>
+    <path d="M363 302L373 312L391 292" stroke="#85E7D8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

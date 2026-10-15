@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="760" viewBox="0 0 960 760" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="47" y1="3" x2="934" y2="755" gradientUnits="userSpaceOnUse"><stop stop-color="#493B5C"/><stop offset=".48" stop-color="#17334A"/><stop offset="1" stop-color="#071722"/></linearGradient>
+    <linearGradient id="line" x1="185" y1="191" x2="764" y2="600" gradientUnits="userSpaceOnUse"><stop stop-color="#86E8D9"/><stop offset=".55" stop-color="#72BEE1"/><stop offset="1" stop-color="#F0C87F"/></linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="#D8EAF9" stroke-opacity=".07"/></pattern>
+  </defs>
+  <rect width="960" height="760" rx="30" fill="url(#bg)"/><rect width="960" height="760" rx="30" fill="url(#grid)"/>
+  <circle cx="749" cy="132" r="181" fill="#C89DDD" fill-opacity=".11"/>
+  <text x="58" y="76" fill="#B4D5E0" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2">FROM RISK TO RESILIENCE</text>
+  <path d="M162 365H797" stroke="url(#line)" stroke-opacity=".48" stroke-width="4"/>
+  <path d="M335 349L353 365L335 381M606 349L624 365L606 381" stroke="#89E3DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(62 209)">
+    <rect width="236" height="310" rx="23" fill="#0A2232" stroke="#77DCD8" stroke-opacity=".5" stroke-width="2"/>
+    <circle cx="118" cy="91" r="56" fill="#12364A" stroke="#75DCD8" stroke-width="2"/>
+    <circle cx="118" cy="91" r="34" stroke="#75DCD8" stroke-opacity=".5" stroke-width="2"/>
+    <path d="M78 93L108 120L158 59" stroke="#E9C980" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="118" y="194" fill="#EAF7F8" font-family="Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle">ASSESS</text>
+    <path d="M43 225H193M43 248H170M43 271H184" stroke="#85B7C5" stroke-opacity=".44" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(362 209)">
+    <rect width="236" height="310" rx="23" fill="#0A2232" stroke="#77BFE3" stroke-opacity=".56" stroke-width="2"/>
+    <path d="M118 41L165 60V112C165 151 144 180 118 194C92 180 71 151 71 112V60L118 41Z" fill="#12364A" stroke="#78C7E5" stroke-width="3"/>
+    <path d="M99 112L113 127L141 95" stroke="#E9C980" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="118" y="229" fill="#EAF7F8" font-family="Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle">DESIGN</text>
+    <path d="M43 258H193M43 281H170" stroke="#85B7C5" stroke-opacity=".44" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(662 209)">
+    <rect width="236" height="310" rx="23" fill="#0A2232" stroke="#E6C67E" stroke-opacity=".58" stroke-width="2"/>
+    <circle cx="118" cy="100" r="62" fill="#12364A" stroke="#E6C67E" stroke-width="2"/>
+    <circle cx="118" cy="100" r="41" stroke="#85D8D9" stroke-opacity=".5" stroke-width="2"/>
+    <path d="M78 102L102 126L158 69" stroke="#85E7D8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="118" y="229" fill="#EAF7F8" font-family="Arial,sans-serif" font-size="21" font-weight="700" text-anchor="middle">EXECUTE</text>
+    <path d="M43 258H193M43 281H170" stroke="#85B7C5" stroke-opacity=".44" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(317 585)">
+    <rect width="326" height="94" rx="22" fill="#0A2637" stroke="#7ADBD8" stroke-opacity=".48"/>
+    <circle cx="48" cy="47" r="17" fill="#7ADBD8" fill-opacity=".17" stroke="#7ADBD8" stroke-width="2"/>
+    <path d="M40 47L46 53L57 40" stroke="#9AF1DE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="82" y="43" fill="#EAF7F8" font-family="Arial,sans-serif" font-size="15" font-weight="700">CONTINUOUS IMPROVEMENT</text>
+    <text x="82" y="64" fill="#A9CBD5" font-family="Arial,sans-serif" font-size="13">Governance • technology • people</text>
+  </g>
+</svg>

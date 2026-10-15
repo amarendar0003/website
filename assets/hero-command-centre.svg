@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="220" y1="50" x2="1260" y2="970" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#123B51"/><stop offset=".52" stop-color="#0A2639"/><stop offset="1" stop-color="#061722"/>
+    </linearGradient>
+    <linearGradient id="globe" x1="480" y1="180" x2="1120" y2="830" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#75F0E0" stop-opacity=".94"/><stop offset=".52" stop-color="#45BDEB" stop-opacity=".54"/><stop offset="1" stop-color="#2778AE" stop-opacity=".16"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="820" y1="420" x2="1260" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#153E52" stop-opacity=".96"/><stop offset="1" stop-color="#091C2A" stop-opacity=".98"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientTransform="matrix(0 570 -690 0 900 480)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#44C9E8" stop-opacity=".24"/><stop offset="1" stop-color="#44C9E8" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" stroke="#B9EDFF" stroke-opacity=".075"/>
+    </pattern>
+    <clipPath id="orb"><circle cx="880" cy="496" r="292"/></clipPath>
+  </defs>
+  <rect width="1440" height="1000" fill="url(#sky)"/>
+  <rect width="1440" height="1000" fill="url(#halo)"/>
+  <rect width="1440" height="1000" fill="url(#grid)"/>
+  <path d="M0 790C225 682 378 703 583 776C793 851 1012 849 1440 632V1000H0V790Z" fill="#061521" fill-opacity=".72"/>
+  <path d="M0 795C236 684 380 708 586 778C799 850 1023 842 1440 626" stroke="#54C7DC" stroke-opacity=".23" stroke-width="2"/>
+  <circle cx="880" cy="496" r="330" fill="#0A2639" fill-opacity=".36" stroke="#8BE9F1" stroke-opacity=".22" stroke-width="2"/>
+  <circle cx="880" cy="496" r="292" fill="url(#globe)" fill-opacity=".13" stroke="url(#globe)" stroke-width="3"/>
+  <g clip-path="url(#orb)" stroke="#86E6F1" stroke-opacity=".48">
+    <ellipse cx="880" cy="496" rx="132" ry="292" stroke-width="2"/>
+    <ellipse cx="880" cy="496" rx="240" ry="292" stroke-width="1.5"/>
+    <ellipse cx="880" cy="496" rx="292" ry="102" stroke-width="1.5"/>
+    <ellipse cx="880" cy="496" rx="292" ry="198" stroke-width="1.5"/>
+    <path d="M588 496H1172M880 204V788" stroke-width="1.5"/>
+    <path d="M652 330L1109 691M1098 280L673 724" stroke-opacity=".32"/>
+  </g>
+  <g fill="#75F0E0">
+    <circle cx="704" cy="364" r="7"/><circle cx="1054" cy="328" r="8"/><circle cx="1117" cy="539" r="7"/>
+    <circle cx="806" cy="700" r="7"/><circle cx="943" cy="243" r="6"/><circle cx="635" cy="555" r="6"/>
+  </g>
+  <g stroke="#6CE4E2" stroke-opacity=".6" stroke-width="2">
+    <path d="M704 364L880 496L1054 328"/><path d="M880 496L1117 539"/><path d="M880 496L806 700"/><path d="M880 496L943 243"/>
+  </g>
+  <g transform="translate(100 176)">
+    <rect width="285" height="160" rx="22" fill="url(#glass)" stroke="#9AEAF3" stroke-opacity=".3"/>
+    <circle cx="38" cy="39" r="7" fill="#86EDD4"/>
+    <text x="60" y="45" fill="#E7F8FC" font-family="Arial,sans-serif" font-size="19" font-weight="700">TRUST FRAMEWORK</text>
+    <path d="M30 79H253M30 111H177M30 136H224" stroke="#8AC6D4" stroke-opacity=".34" stroke-width="8" stroke-linecap="round"/>
+    <path d="M30 79H186" stroke="#60DCD7" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(1010 640)">
+    <rect width="308" height="184" rx="24" fill="url(#glass)" stroke="#A5EDF1" stroke-opacity=".35"/>
+    <text x="25" y="39" fill="#A6D3DF" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2">RISK SIGNALS</text>
+    <path d="M28 139L77 108L112 122L164 74L204 91L274 43" stroke="#7BE5DC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M28 149H278" stroke="#8AC6D4" stroke-opacity=".28" stroke-width="2"/>
+    <circle cx="164" cy="74" r="7" fill="#FFD285"/><circle cx="274" cy="43" r="8" fill="#7BE5DC"/>
+  </g>
+  <g transform="translate(536 790)">
+    <rect width="300" height="92" rx="20" fill="#0A2434" stroke="#6AD7E1" stroke-opacity=".46"/>
+    <path d="M32 46H112M188 46H268" stroke="#60DCD7" stroke-opacity=".5" stroke-width="2"/>
+    <path d="M141 22L164 31V48C164 65 154 76 141 82C128 76 118 65 118 48V31L141 22Z" fill="#133E4F" stroke="#7BE5DC" stroke-width="2"/>
+    <path d="M131 49L139 57L153 41" stroke="#FFD285" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
