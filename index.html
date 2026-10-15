@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20261015-home-network" />
+    <link rel="stylesheet" href="styles.css?v=20261015-fullbleed-hero" />
   </head>
   <body class="home-page">
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -40,22 +40,60 @@
           <div class="hero-glow hero-glow-one"></div>
           <div class="hero-glow hero-glow-two"></div>
           <canvas class="hero-network" aria-hidden="true"></canvas>
-          <div class="hero-visual" aria-hidden="true"><img src="assets/hero-command-centre.svg" alt="" /></div>
-          <div class="container hero-grid">
-            <div class="hero-copy reveal">
-              <p class="eyebrow">CNLU Patna × GIGA Innovations Technologies</p>
-              <h1>Cybersecurity. Data Protection. Digital Trust.</h1>
-              <p class="lead">Advancing techno-legal research, compliance frameworks and secure digital governance for a resilient digital India.</p>
-              <div class="hero-actions">
-                <a href="cyber-security.html" class="btn btn-primary">Explore our focus areas</a>
-                <a href="about.html" class="btn btn-secondary">About the Unit</a>
-              </div>
-              <div class="hero-metrics">
-                <div><strong>Research</strong><span>Law, technology and policy</span></div>
-                <div><strong>Capacity</strong><span>Institutional preparedness</span></div>
-                <div><strong>Digital trust</strong><span>Security and responsible data use</span></div>
-              </div>
-              <p class="scope-note">The Unit’s activities and institutional arrangements are subject to approval, available expertise, applicable agreements and authorisations.</p>
+          <div class="hero-carousel" role="region" aria-roledescription="carousel" aria-label="CS-DPCRU focus areas">
+            <div class="hero-carousel-frame">
+              <figure class="hero-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 4: Cyber resilience" data-slide>
+                <img src="assets/home-cyber-resilience.svg" alt="Original illustration of a digital shield protecting a connected cyber network" />
+                <figcaption class="hero-slide-copy">
+                  <p class="eyebrow">Focus Area 01</p>
+                  <h1>Cyber Security Operations</h1>
+                  <p>Strengthen institutional resilience through cybersecurity research, risk governance, preparedness and practical capacity building.</p>
+                  <a class="btn btn-primary" href="cyber-security.html">Explore cyber security <span aria-hidden="true">→</span></a>
+                </figcaption>
+              </figure>
+              <figure class="hero-slide" role="group" aria-roledescription="slide" aria-label="2 of 4: Data protection" data-slide aria-hidden="true" inert>
+                <img src="assets/home-data-protection.svg" alt="Original illustration of protected personal data moving through a privacy framework" />
+                <figcaption class="hero-slide-copy">
+                  <p class="eyebrow">Focus Area 02</p>
+                  <h1>Data Protection &amp; Privacy</h1>
+                  <p>Translate data protection law into responsible data practices, privacy governance and accountable organisational safeguards.</p>
+                  <a class="btn btn-primary" href="data-protection.html">Explore data protection <span aria-hidden="true">→</span></a>
+                </figcaption>
+              </figure>
+              <figure class="hero-slide" role="group" aria-roledescription="slide" aria-label="3 of 4: Digital trust" data-slide aria-hidden="true" inert>
+                <img src="assets/home-digital-trust.svg" alt="Original illustration of a connected digital ecosystem anchored by trusted governance" />
+                <figcaption class="hero-slide-copy">
+                  <p class="eyebrow">Focus Area 03</p>
+                  <h1>Digital Trust &amp; National Security</h1>
+                  <p>Explore data governance, digital infrastructure and national security through legal, technological and institutional research.</p>
+                  <a class="btn btn-primary" href="data-trust.html">Explore digital trust <span aria-hidden="true">→</span></a>
+                </figcaption>
+              </figure>
+              <figure class="hero-slide" role="group" aria-roledescription="slide" aria-label="4 of 4: Research and governance" data-slide aria-hidden="true" inert>
+                <img src="assets/home-research-governance.svg" alt="Original illustration of legal research, technology and accountable digital governance" />
+                <figcaption class="hero-slide-copy">
+                  <p class="eyebrow">Research &amp; Policy</p>
+                  <h1>Research for a Trusted Digital Future</h1>
+                  <p>Connect legal scholarship, technology and policy to develop evidence-based frameworks for responsible digital governance.</p>
+                  <a class="btn btn-primary" href="research.html">Explore research <span aria-hidden="true">→</span></a>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="hero-carousel-controls" role="group" aria-label="Slideshow controls">
+            <button class="carousel-control carousel-play" type="button" aria-label="Pause automatic slides" aria-pressed="false">
+              <span class="carousel-pause-icon" aria-hidden="true">Ⅱ</span>
+              <span class="carousel-play-icon" aria-hidden="true">▶</span>
+            </button>
+            <div class="carousel-pagination" aria-label="Choose a slide">
+              <button class="carousel-dot is-active" type="button" aria-label="Show slide 1: Cyber resilience" aria-current="true"></button>
+              <button class="carousel-dot" type="button" aria-label="Show slide 2: Data protection"></button>
+              <button class="carousel-dot" type="button" aria-label="Show slide 3: Digital trust"></button>
+              <button class="carousel-dot" type="button" aria-label="Show slide 4: Research and governance"></button>
+            </div>
+            <div class="carousel-arrows">
+              <button class="carousel-control carousel-previous" type="button" aria-label="Previous slide">←</button>
+              <button class="carousel-control carousel-next" type="button" aria-label="Next slide">→</button>
             </div>
           </div>
         </section>
@@ -111,6 +149,6 @@
         <div class="container footer-bottom"><p>© <span id="year"></span> CS-DPCRU</p><p class="disclaimer">Website content is informational and does not constitute legal advice, statutory certification, regulatory approval or a guarantee of compliance. Specific engagements are governed by separately agreed terms.</p></div>
       </footer>
     </div>
-    <script src="script.js?v=20261015-home-network"></script>
+    <script src="script.js?v=20261015-home-carousel"></script>
   </body>
 </html>

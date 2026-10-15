@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="90" y1="62" x2="1370" y2="862" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5F9F8"/><stop offset=".5" stop-color="#E4EFF3"/><stop offset="1" stop-color="#D9E9EF"/>
+    </linearGradient>
+    <linearGradient id="core" x1="925" y1="250" x2="1205" y2="586" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#54D6C8"/><stop offset=".55" stop-color="#328BAD"/><stop offset="1" stop-color="#315987"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="731" y1="260" x2="906" y2="388" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity=".96"/><stop offset="1" stop-color="#EAF3F5" stop-opacity=".98"/>
+    </linearGradient>
+    <radialGradient id="aura" cx="0" cy="0" r="1" gradientTransform="matrix(0 420 -451 0 1076 435)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#55D9D0" stop-opacity=".28"/><stop offset="1" stop-color="#55D9D0" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" stroke="#7AC9D2" stroke-opacity=".09"/>
+    </pattern>
+    <filter id="blur" x="615" y="69" width="927" height="829" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="32"/>
+    </filter>
+    <filter id="shadow" x="892" y="223" width="365" height="439" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="24"/>
+    </filter>
+  </defs>
+  <rect width="1440" height="900" fill="url(#sky)"/>
+  <rect width="1440" height="900" fill="url(#grid)"/>
+  <ellipse cx="1082" cy="437" rx="425" ry="364" fill="#49C5CF" fill-opacity=".11" filter="url(#blur)"/>
+  <rect width="1440" height="900" fill="url(#aura)"/>
+  <g stroke="#72D9DA" stroke-opacity=".58" stroke-width="2">
+    <path d="m1075 419-257-179m257 179 244-174m-244 174-258 194m258-194 245 195m-245-195-3-291m3 291-1 288"/>
+    <path d="m818 240 244 2m200 3-185 174m-262 194 262-194m0 0 247 195m-247-195 3-291"/>
+  </g>
+  <g fill="#9CF3E6" stroke="#477F91" stroke-width="5">
+    <circle cx="810" cy="235" r="19"/><circle cx="1329" cy="238" r="19"/>
+    <circle cx="810" cy="620" r="19"/><circle cx="1328" cy="620" r="19"/>
+    <circle cx="1072" cy="120" r="19"/><circle cx="1074" cy="729" r="19"/>
+  </g>
+  <g fill="url(#panel)" stroke="#8DDFE0" stroke-opacity=".5" stroke-width="2">
+    <rect x="699" y="268" width="193" height="132" rx="22"/>
+    <rect x="1264" y="267" width="132" height="132" rx="22"/>
+    <rect x="706" y="501" width="204" height="132" rx="22"/>
+    <rect x="1260" y="501" width="165" height="132" rx="22"/>
+  </g>
+  <g fill="#8AE8DF">
+    <circle cx="738" cy="308" r="11"/><circle cx="1303" cy="308" r="11"/>
+    <circle cx="746" cy="541" r="11"/><circle cx="1300" cy="541" r="11"/>
+  </g>
+  <g stroke="#B2DCE2" stroke-opacity=".65" stroke-width="7" stroke-linecap="round">
+    <path d="M762 308h93m-93 30h72m482-30h43m-43 30h29"/>
+    <path d="M771 541h101m-101 29h79m482-29h75m-75 29h53"/>
+  </g>
+  <ellipse cx="1070" cy="636" rx="147" ry="30" fill="#37CCCB" fill-opacity=".2" filter="url(#shadow)"/>
+  <circle cx="1075" cy="419" r="165" fill="#1F6379" fill-opacity=".23" stroke="#A5F4EC" stroke-opacity=".52" stroke-width="2"/>
+  <circle cx="1075" cy="419" r="139" fill="url(#core)" stroke="#E0FFFA" stroke-opacity=".85" stroke-width="4"/>
+  <circle cx="1075" cy="419" r="104" stroke="#D1FFF8" stroke-opacity=".62" stroke-width="2"/>
+  <ellipse cx="1075" cy="419" rx="61" ry="139" stroke="#D1FFF8" stroke-opacity=".52" stroke-width="2"/>
+  <path d="M936 419h278m-139-139v278" stroke="#D1FFF8" stroke-opacity=".5" stroke-width="2"/>
+  <path d="m1075 361 38 15v34c0 31-17 54-38 66-22-12-39-35-39-66v-34l39-15Z" fill="#E6FFF9"/>
+  <path d="m1058 411 12 12 24-27" stroke="#277C83" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M585 900c148-119 295-177 440-165 163 13 269 93 415 40v125H585Z" fill="#9CBFCC" fill-opacity=".16"/>
+</svg>
