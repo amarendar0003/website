@@ -93,6 +93,7 @@ sudo /home/git/cs-dpcru-source/backend/deploy-server.sh
 The script installs backend requirements in an isolated virtual environment, creates and
 starts a dedicated systemd service, initializes the database table, and adds the
 website-only `/api/` Nginx route. It checks the API health endpoint and Nginx
-configuration, and rolls back the service and route if validation fails. It keeps a
-timestamped Nginx backup. Keep `backend/.env` private with permissions `600`; do not
-commit it or paste its database URL into chat.
+configuration, retries the proxied health check while Nginx reloads, and rolls back the
+service and route if validation fails. It keeps a timestamped Nginx backup. Keep
+`backend/.env` private with permissions `600`; do not commit it or paste its database URL
+into chat.

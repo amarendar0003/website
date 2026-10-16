@@ -165,8 +165,23 @@ nginx_changed=1
 
 nginx -t
 systemctl reload nginx
-curl --fail --silent --show-error --max-time 5 \
-  -H 'Host: 103.169.178.87' http://127.0.0.1/api/health >/dev/null
+
+proxy_healthy=0
+for _ in $(seq 1 15); do
+  if curl --fail --silent --max-time 3 \
+    -H 'Host: 103.169.178.87' http://127.0.0.1/api/health >/dev/null 2>&1; then
+    proxy_healthy=1
+    break
+  fi
+  sleep 1
+done
+if [[ $proxy_healthy -ne 1 ]]; then
+  echo "Nginx did not route /api/health to the website backend after reload." >&2
+  if [[ -r /var/log/nginx/error.log ]]; then
+    grep -E '127\.0\.0\.1:3001|/api/health' /var/log/nginx/error.log | tail -n 10 >&2 || true
+  fi
+  exit 1
+fi
 
 deployment_complete=1
 trap - EXIT
