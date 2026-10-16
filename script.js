@@ -9,6 +9,42 @@ const publicationEmpty = document.getElementById('publication-empty');
 const enquiryForm = document.getElementById('enquiry-form');
 const formStatus = document.getElementById('form-status');
 
+// Load the shared English-Hindi translator on pages that use the institutional header.
+(function initLanguageTranslation() {
+  const languageContainer = document.querySelector('.gigw-lang') ||
+    document.querySelector('.gigw-tools');
+  if (!languageContainer) return;
+
+  languageContainer.classList.add('gigw-lang');
+  languageContainer.setAttribute('aria-label', 'Language selection: English or Hindi');
+  languageContainer.replaceChildren();
+
+  const widget = document.createElement('div');
+  widget.id = 'google_translate_element';
+  languageContainer.append(widget);
+
+  window.googleTranslateElementInit = () => {
+    if (!window.google || !window.google.translate || !window.google.translate.TranslateElement) {
+      languageContainer.textContent = 'Translation unavailable';
+      return;
+    }
+
+    new window.google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,hi',
+      layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, widget.id);
+  };
+
+  const translationScript = document.createElement('script');
+  translationScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+  translationScript.async = true;
+  translationScript.onerror = () => {
+    languageContainer.textContent = 'Translation unavailable';
+  };
+  document.head.append(translationScript);
+})();
+
 // Add only institutionally verified outputs. Empty by design until content is approved.
 const publications = [];
 
@@ -396,5 +432,3 @@ if (heroCanvas) {
   if (btnThemeDefault) btnThemeDefault.addEventListener('click', () => applyTheme('default'));
   if (btnThemeContrast) btnThemeContrast.addEventListener('click', () => applyTheme('high-contrast'));
 })();
-
-

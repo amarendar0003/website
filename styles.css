@@ -139,6 +139,20 @@ p { color: var(--muted); font-size: 1.03rem; }
   display: inline-flex;
   align-items: center;
 }
+.gigw-lang .goog-te-gadget {
+  color: #d8e5e8;
+  font-family: inherit;
+  font-size: 0.7rem;
+}
+.gigw-lang .goog-te-gadget select {
+  max-width: 130px;
+  padding: 3px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  color: #17313d;
+  background: #ffffff;
+  font: inherit;
+}
 .lang-pill {
   padding: 2px 8px;
   border-radius: 999px;
