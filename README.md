@@ -15,6 +15,15 @@ A responsive static website for the CNLU–GIGA Cyber Security and Data Protecti
 
 Shared styling and behavior are in `styles.css` and `script.js`; local illustrations and images are in `assets/`.
 
+## English and Hindi
+
+Pages using the shared institutional header and `script.js` display a Google Translate
+English/हिन्दी switch. The language choice is remembered across pages; new pages using
+this shared shell are translated automatically. Translation is machine-generated and may
+not be accurate for legal or technical content. When Hindi is selected, page text is
+processed by Google Translate; do not treat translated text as an authoritative or
+reviewed version.
+
 ## Run locally
 
 From the project folder, start the Python static server:

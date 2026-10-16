@@ -4,17 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#F7F9F8" />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'self';" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com; frame-src 'self' https://translate.google.com;" />
     <title>Contact | CS-DPCRU</title>
     <meta name="description" content="Institutional contact information and enquiry options for the CNLU–GIGA CS-DPCRU." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20261015-academic-visuals-4" />
+    <link rel="stylesheet" href="styles.css?v=20261016-language-switch" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -95,7 +92,7 @@
           </div>
           <div class="container enquiry-panel">
             <div><h2>Send an enquiry</h2><p>This is a sample form preview. It does not submit or store information. A verified institutional contact and approved form service are needed to enable submissions.</p></div>
-            <form id="enquiry-form" class="enquiry-form" novalidate>
+            <form id="enquiry-form" class="enquiry-form">
               <label for="enquiry-name">Full name <span aria-hidden="true">*</span>
                 <input id="enquiry-name" name="name" autocomplete="name" required aria-required="true" maxlength="150" />
               </label>
