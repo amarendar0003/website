@@ -46,7 +46,7 @@ The supplied Neon connection string is configured in the private, Git-ignored `b
 python -m backend.app
 ```
 
-Open <http://localhost:3000> in a browser. The backend creates the `enquires` table if it does not already exist and accepts form submissions at `/api/enquiries`.
+Open <http://localhost:3001> in a browser. The backend creates the `enquires` table if it does not already exist and accepts form submissions at `/api/enquiries`.
 
 The form stores the submitted name, optional organisation, email, mobile number, nature of enquiry and message. Keep `backend/.env` private; it is excluded by `backend/.gitignore`. Official contact details remain marked “to be confirmed” until approved values are supplied.
 
@@ -73,3 +73,26 @@ Use Git as the source of truth: direct edits to `/var/www/website` are not commi
 may be replaced by the next deployment. This script publishes static files only; changes
 to the Python backend or its environment/database configuration require a separate
 backend deployment process.
+
+### Deploy the enquiry backend
+
+The server's port `3000` is already used by another application. The CS-DPCRU API runs
+on `127.0.0.1:3001` instead; it is not exposed directly to the internet. Nginx forwards
+only `/api/` requests on the IP virtual host to this backend, leaving the existing
+homepage, `/sam`, `/website/`, and other application routes unchanged.
+
+After committing and pushing backend changes, connect over SSH as `git` and update the
+checkout:
+
+```bash
+cd /home/git/cs-dpcru-source
+git pull --ff-only origin main
+sudo /home/git/cs-dpcru-source/backend/deploy-server.sh
+```
+
+The script installs backend requirements in an isolated virtual environment, creates and
+starts a dedicated systemd service, initializes the database table, and adds the
+website-only `/api/` Nginx route. It checks the API health endpoint and Nginx
+configuration, and rolls back the service and route if validation fails. It keeps a
+timestamped Nginx backup. Keep `backend/.env` private with permissions `600`; do not
+commit it or paste its database URL into chat.
