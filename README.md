@@ -18,10 +18,11 @@ Shared styling and behavior are in `styles.css` and `script.js`; local illustrat
 ## English and Hindi
 
 Pages using the shared institutional header and `script.js` display a Google Translate
-language selector for English and Hindi. New pages using this shared shell are translated
-automatically when a visitor selects a language. Translation is machine-generated and may
-not be accurate for legal or technical content. The page text is processed by Google
-Translate; do not treat translated text as an authoritative or reviewed version.
+English/हिन्दी switch. The language choice is remembered across pages; new pages using
+this shared shell are translated automatically. Translation is machine-generated and may
+not be accurate for legal or technical content. When Hindi is selected, page text is
+processed by Google Translate; do not treat translated text as an authoritative or
+reviewed version.
 
 ## Run locally
 

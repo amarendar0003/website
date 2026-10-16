@@ -11,37 +11,65 @@ const formStatus = document.getElementById('form-status');
 
 // Load the shared English-Hindi translator on pages that use the institutional header.
 (function initLanguageTranslation() {
-  const languageContainer = document.querySelector('.gigw-lang') ||
-    document.querySelector('.gigw-tools');
+  const languageContainer = document.querySelector('.gigw-lang');
   if (!languageContainer) return;
 
-  languageContainer.classList.add('gigw-lang');
   languageContainer.setAttribute('aria-label', 'Language selection: English or Hindi');
   languageContainer.replaceChildren();
 
+  const savedLanguage = document.cookie.match(/(?:^|;\s*)googtrans=([^;]+)/);
+  const selectedLanguage = savedLanguage && decodeURIComponent(savedLanguage[1]).endsWith('/hi')
+    ? 'hi'
+    : 'en';
+  const languageSwitch = document.createElement('div');
+  languageSwitch.className = 'language-switch notranslate';
+  languageSwitch.setAttribute('role', 'group');
+  languageSwitch.setAttribute('aria-label', 'Choose page language');
+
+  const languageOptions = [
+    { code: 'en', label: 'English', lang: 'en' },
+    { code: 'hi', label: 'हिन्दी', lang: 'hi' }
+  ];
+
+  languageOptions.forEach(({ code, label, lang }) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'language-choice';
+    button.textContent = label;
+    button.lang = lang;
+    button.setAttribute('aria-pressed', String(code === selectedLanguage));
+    button.addEventListener('click', () => {
+      if (code === selectedLanguage) return;
+
+      if (code === 'hi') {
+        document.cookie = 'googtrans=/en/hi; path=/; SameSite=Lax';
+      } else {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax';
+      }
+
+      window.location.reload();
+    });
+    languageSwitch.append(button);
+  });
+  languageContainer.append(languageSwitch);
+
   const widget = document.createElement('div');
   widget.id = 'google_translate_element';
+  widget.className = 'translation-widget notranslate';
+  widget.setAttribute('aria-hidden', 'true');
   languageContainer.append(widget);
 
   window.googleTranslateElementInit = () => {
-    if (!window.google || !window.google.translate || !window.google.translate.TranslateElement) {
-      languageContainer.textContent = 'Translation unavailable';
-      return;
-    }
-
     new window.google.translate.TranslateElement({
       pageLanguage: 'en',
-      includedLanguages: 'en,hi',
-      layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
+      includedLanguages: 'hi',
+      autoDisplay: false
     }, widget.id);
   };
 
   const translationScript = document.createElement('script');
   translationScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
   translationScript.async = true;
-  translationScript.onerror = () => {
-    languageContainer.textContent = 'Translation unavailable';
-  };
   document.head.append(translationScript);
 })();
 
