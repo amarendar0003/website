@@ -73,6 +73,193 @@ const formStatus = document.getElementById('form-status');
   document.head.append(translationScript);
 })();
 
+const directorProfiles = [
+  {
+    name: 'Dr. Arjun Mehta',
+    designation: 'Director – Cybersecurity Research',
+    email: 'arjun.mehta@example.com',
+    phone: '+91 90000 00001',
+    specialization: 'Cybersecurity, Digital Forensics & Incident Response',
+    portrait: 'assets/director-arjun-mehta.svg',
+    biography: 'This fictional placeholder profile represents a director focused on strengthening institutional cybersecurity and incident readiness.',
+    interests: ['Cybersecurity governance and resilience', 'Digital forensics and evidence integrity', 'Incident response and institutional preparedness']
+  },
+  {
+    name: 'Dr. Priya Sharma',
+    designation: 'Director – Data Protection',
+    email: 'priya.sharma@example.com',
+    phone: '+91 90000 00002',
+    specialization: 'Data Privacy, Information Governance & Compliance',
+    portrait: 'assets/director-priya-sharma.svg',
+    biography: 'This fictional placeholder profile represents a director working at the intersection of privacy, information governance and responsible compliance.',
+    interests: ['Data privacy and rights-respecting design', 'Information governance and stewardship', 'Compliance frameworks and accountability']
+  },
+  {
+    name: 'Dr. Rahul Verma',
+    designation: 'Director – Data Trust & Policy',
+    email: 'rahul.verma@example.com',
+    phone: '+91 90000 00003',
+    specialization: 'Data Governance, Digital Trust & Public Policy',
+    portrait: 'assets/director-rahul-verma.svg',
+    biography: 'This fictional placeholder profile represents a director exploring trustworthy data ecosystems and evidence-informed public policy.',
+    interests: ['Data governance and institutional responsibility', 'Digital trust and public-sector data use', 'Comparative technology policy']
+  },
+  {
+    name: 'Dr. Ananya Rao',
+    designation: 'Director – Research & Innovation',
+    email: 'ananya.rao@example.com',
+    phone: '+91 90000 00004',
+    specialization: 'AI Security, Emerging Technologies & Research',
+    portrait: 'assets/director-ananya-rao.svg',
+    biography: 'This fictional placeholder profile represents a director supporting interdisciplinary research on emerging technologies and responsible innovation.',
+    interests: ['AI security and accountable deployment', 'Emerging technology risk and governance', 'Interdisciplinary research and innovation']
+  }
+];
+
+const directorGrid = document.getElementById('director-grid');
+const directorDialog = document.getElementById('director-dialog');
+
+function createContactIcon(kind) {
+  const namespace = 'http://www.w3.org/2000/svg';
+  const icon = document.createElementNS(namespace, 'svg');
+  icon.setAttribute('viewBox', '0 0 24 24');
+  icon.setAttribute('aria-hidden', 'true');
+  icon.setAttribute('focusable', 'false');
+
+  const paths = kind === 'email'
+    ? ['M4 6h16v12H4z', 'm4 7 8 6 8-6']
+    : ['M7 3h3l2 5-2 2a14 14 0 0 0 4 4l2-2 5 2v3c0 1.1-.9 2-2 2C10.8 19 5 13.2 5 6c0-1.7.8-3 2-3Z'];
+
+  paths.forEach((pathData) => {
+    const path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', pathData);
+    icon.append(path);
+  });
+  return icon;
+}
+
+function createDirectorContactLink(kind, value, label) {
+  const link = document.createElement('a');
+  link.className = 'director-contact-link';
+  link.href = kind === 'email' ? `mailto:${value}` : `tel:${value.replaceAll(' ', '')}`;
+  link.append(createContactIcon(kind));
+  const text = document.createElement('span');
+  text.textContent = label;
+  link.append(text);
+  return link;
+}
+
+function renderDirectorProfiles() {
+  if (!directorGrid) return;
+
+  directorProfiles.forEach((director, index) => {
+    const card = document.createElement('article');
+    card.className = 'director-card reveal';
+
+    const portrait = document.createElement('img');
+    portrait.className = 'director-portrait';
+    portrait.src = director.portrait;
+    portrait.alt = `Illustrated placeholder portrait of ${director.name}`;
+    portrait.width = 480;
+    portrait.height = 560;
+    card.append(portrait);
+
+    const content = document.createElement('div');
+    content.className = 'director-card-content';
+    const placeholder = document.createElement('span');
+    placeholder.className = 'director-placeholder';
+    placeholder.textContent = 'Fictional placeholder';
+    content.append(placeholder);
+
+    const name = document.createElement('h3');
+    name.textContent = director.name;
+    content.append(name);
+
+    const designation = document.createElement('p');
+    designation.className = 'director-designation';
+    designation.textContent = director.designation;
+    content.append(designation);
+
+    const expertise = document.createElement('p');
+    expertise.className = 'director-expertise';
+    const expertiseLabel = document.createElement('strong');
+    expertiseLabel.textContent = 'Specialization';
+    expertise.append(expertiseLabel, document.createElement('br'), document.createTextNode(director.specialization));
+    content.append(expertise);
+
+    const contacts = document.createElement('div');
+    contacts.className = 'director-card-contacts';
+    contacts.append(
+      createDirectorContactLink('email', director.email, director.email),
+      createDirectorContactLink('phone', director.phone, director.phone)
+    );
+    content.append(contacts);
+
+    const profileButton = document.createElement('button');
+    profileButton.className = 'director-profile-button';
+    profileButton.type = 'button';
+    profileButton.dataset.directorIndex = String(index);
+    profileButton.textContent = 'View Profile';
+    content.append(profileButton);
+    card.append(content);
+    directorGrid.append(card);
+  });
+}
+
+function openDirectorProfile(director) {
+  if (!directorDialog) return;
+
+  directorDialog.querySelector('#director-dialog-portrait').src = director.portrait;
+  directorDialog.querySelector('#director-dialog-portrait').alt = `Illustrated placeholder portrait of ${director.name}`;
+  directorDialog.querySelector('#director-dialog-name').textContent = director.name;
+  directorDialog.querySelector('#director-dialog-designation').textContent = director.designation;
+  directorDialog.querySelector('#director-dialog-bio').textContent = director.biography;
+
+  const interests = directorDialog.querySelector('#director-dialog-interests');
+  interests.replaceChildren();
+  director.interests.forEach((interest) => {
+    const item = document.createElement('li');
+    item.textContent = interest;
+    interests.append(item);
+  });
+
+  const contacts = directorDialog.querySelector('#director-dialog-contact');
+  contacts.replaceChildren(
+    createDirectorContactLink('email', director.email, director.email),
+    createDirectorContactLink('phone', director.phone, director.phone)
+  );
+  directorDialog.showModal();
+}
+
+renderDirectorProfiles();
+
+if (directorGrid && directorDialog) {
+  directorGrid.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-director-index]');
+    if (!button) return;
+
+    const director = directorProfiles[Number(button.dataset.directorIndex)];
+    if (director) openDirectorProfile(director);
+  });
+
+  directorDialog.querySelector('.director-dialog-close').addEventListener('click', () => {
+    directorDialog.close();
+  });
+
+  directorDialog.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    directorDialog.close();
+  });
+
+  directorDialog.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') directorDialog.close();
+  });
+
+  directorDialog.addEventListener('click', (event) => {
+    if (event.target === directorDialog) directorDialog.close();
+  });
+}
+
 // Add only institutionally verified outputs. Empty by design until content is approved.
 const publications = [];
 

@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20261016-language-switch" />
+    <link rel="stylesheet" href="styles.css?v=20261016-leadership" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -100,6 +100,40 @@
               <li>Advance secure and accountable adoption of emerging technologies, including artificial intelligence.</li>
             </ul>
           </div>
+          <section class="container directors-section" aria-labelledby="directors-heading">
+            <div class="directors-intro reveal">
+              <p class="eyebrow">Our Leadership</p>
+              <h2 id="directors-heading">Leadership &amp; Directors</h2>
+              <p class="section-intro">Meet the leadership guiding our mission in cybersecurity, data protection, digital trust, and policy research.</p>
+              <p>Our leadership team brings together expertise across cybersecurity, data protection, digital trust, emerging technologies, and public policy. Through interdisciplinary collaboration and research, the team supports our mission to strengthen digital resilience, responsible data governance, and institutional capacity.</p>
+              <p class="placeholder-notice">The profiles below use fictional placeholder information for development purposes.</p>
+            </div>
+            <div class="director-grid" id="director-grid" aria-live="polite"></div>
+          </section>
+          <section class="container collective-vision" aria-labelledby="collective-vision-heading">
+            <div class="directors-intro">
+              <p class="eyebrow">Working Together</p>
+              <h2 id="collective-vision-heading">Our Collective Vision</h2>
+            </div>
+            <div class="vision-grid">
+              <article class="vision-card"><span class="vision-icon" aria-hidden="true">01</span><h3>Research Excellence</h3><p>Advancing interdisciplinary research in cybersecurity and data governance.</p></article>
+              <article class="vision-card"><span class="vision-icon" aria-hidden="true">02</span><h3>Responsible Innovation</h3><p>Supporting secure, ethical, and trustworthy digital technologies.</p></article>
+              <article class="vision-card"><span class="vision-icon" aria-hidden="true">03</span><h3>Institutional Collaboration</h3><p>Connecting academia, policymakers, and industry to address emerging challenges.</p></article>
+            </div>
+          </section>
+          <dialog class="director-dialog" id="director-dialog" aria-labelledby="director-dialog-name" aria-describedby="director-dialog-bio">
+            <div class="director-dialog-content">
+              <button class="director-dialog-close" type="button" aria-label="Close director profile">Close <span aria-hidden="true">×</span></button>
+              <img class="director-dialog-portrait" id="director-dialog-portrait" src="assets/director-arjun-mehta.svg" alt="" />
+              <p class="eyebrow">Fictional placeholder profile</p>
+              <h2 id="director-dialog-name"></h2>
+              <p class="director-dialog-designation" id="director-dialog-designation"></p>
+              <p id="director-dialog-bio"></p>
+              <h3>Research interests</h3>
+              <ul class="director-interests" id="director-dialog-interests"></ul>
+              <div class="director-contact" id="director-dialog-contact"></div>
+            </div>
+          </dialog>
         </section>
       </main>
       <footer class="site-footer">
@@ -145,6 +179,6 @@
         <div class="container footer-bottom"><p>© <span id="year"></span> CS-DPCRU, Chanakya National Law University.</p><p class="disclaimer">Website content is informational and does not constitute legal advice, statutory certification, regulatory approval or a guarantee of compliance. Specific engagements are governed by separately agreed terms.</p></div>
       </footer>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js?v=20261016-leadership"></script>
   </body>
 </html>
