@@ -52,48 +52,97 @@ The form stores the submitted name, optional organisation, email, mobile number,
 
 ## Deploy updates to the server
 
-The public static site is served at <http://103.169.178.87/website/> from `/var/www/website`.
-To publish changes to that site:
+The public site is at <http://103.169.178.87/website/>. The server Git checkout is
+`/home/git/cs-dpcru-source`; connect with `ssh git@103.169.178.87`.
 
-1. Commit your changes locally and push them to the repository's `main` branch.
-2. Connect to the server over SSH as the authorized `git` account.
-3. Run the deployment script:
+### Before each deployment
+
+1. Make and test the change locally.
+2. Review `git status --short` and stage only the intended source files. Do not add
+   `.env` files, credentials, or the unrelated nested `website/` directory.
+3. Commit and push the change to `main`:
 
    ```bash
-   sudo /home/git/deploy-website.sh
+   git add <changed-files>
+   git diff --cached --check
+   git commit -m "Describe the change"
+   git push origin main
    ```
 
-The script fast-forwards its Git checkout from `origin/main`, stages the site, and checks
-the homepage and contact page before completing. It keeps the previous site in a
-timestamped backup and restores it if those checks fail. It does not change Nginx
-configuration or restart the Trakagile application. The nested `website/` folder is
-excluded from this deployment.
+Deploy only the part you changed, using the appropriate procedure below.
 
-Use Git as the source of truth: direct edits to `/var/www/website` are not committed and
-may be replaced by the next deployment. This script publishes static files only; changes
-to the Python backend or its environment/database configuration require a separate
-backend deployment process.
+### Static website (HTML, CSS, JavaScript, and assets)
 
-### Deploy the enquiry backend
-
-The server's port `3000` is already used by another application. The CS-DPCRU API runs
-on `127.0.0.1:3001` instead; it is not exposed directly to the internet. Nginx forwards
-only `/api/` requests on the IP virtual host to this backend, leaving the existing
-homepage, `/sam`, `/website/`, and other application routes unchanged.
-
-After committing and pushing backend changes, connect over SSH as `git` and update the
-checkout:
+SSH to the server and run the installed static deployment script:
 
 ```bash
-cd /home/git/cs-dpcru-source
-git pull --ff-only origin main
-sudo /home/git/cs-dpcru-source/backend/deploy-server.sh
+ssh git@103.169.178.87
+sudo /home/git/deploy-website.sh
 ```
 
-The script installs backend requirements in an isolated virtual environment, creates and
-starts a dedicated systemd service, initializes the database table, and adds the
-website-only `/api/` Nginx route. It checks the API health endpoint and Nginx
-configuration, retries the proxied health check while Nginx reloads, and rolls back the
-service and route if validation fails. It keeps a timestamped Nginx backup. Keep
-`backend/.env` private with permissions `600`; do not commit it or paste its database URL
-into chat.
+The script fast-forwards the server checkout from `origin/main`, publishes static files
+to `/var/www/website`, and checks the homepage and contact page. It keeps a timestamped
+backup and restores the previous site if those checks fail. Verify the public pages after
+deployment:
+
+```bash
+curl -I http://103.169.178.87/website/
+curl -I http://103.169.178.87/website/contact.html
+```
+
+This script publishes static files only. It does not deploy backend code, edit Nginx, or
+restart Trakagile. Direct edits to `/var/www/website` are not in Git and may be replaced
+by the next deployment.
+
+### Enquiry backend (Python/API)
+
+Port `3000` belongs to another application. The website API listens privately on
+`127.0.0.1:3001`; Nginx forwards only `/api/` requests to it. Do not change the existing
+port `3000`, catch-all route, `/sam`, `/website/`, or Trakagile routes.
+
+For each backend code or dependency update, after pushing the change, SSH to the server
+and update the checkout and virtual environment:
+
+```bash
+ssh git@103.169.178.87
+cd /home/git/cs-dpcru-source
+git pull --ff-only origin main
+sudo runuser -u git -- /home/git/cs-dpcru-source/backend/.venv/bin/python -m pip install -r /home/git/cs-dpcru-source/backend/requirements.txt
+sudo systemctl restart cnlu-giga-website-backend.service
+```
+
+Check the service and both local and public health endpoints:
+
+```bash
+sudo systemctl status cnlu-giga-website-backend.service --no-pager
+curl --fail http://127.0.0.1:3001/api/health
+curl --fail http://103.169.178.87/api/health
+```
+
+The expected health response is `{"status":"ok"}`. If the restart or health check fails,
+inspect the service log:
+
+```bash
+sudo journalctl -u cnlu-giga-website-backend.service --no-pager -n 80
+```
+
+`backend/deploy-server.sh` is the one-time server setup script. It installs the service
+and adds the Nginx `/api/` route; it intentionally refuses to overwrite an existing
+service or duplicate that route. Do not run it for routine code deployments.
+
+### Secrets, database, and rollback
+
+`backend/.env` is server-only configuration and must remain Git-ignored with permissions
+`600`. Never commit it, copy it into `/var/www/website`, or paste its database URL into
+chat. A secret change must be applied securely to the server's
+`/home/git/cs-dpcru-source/backend/.env`, then restart the backend service and verify its
+health. Do not overwrite an existing server `.env` with a deployment archive.
+
+The backend initializes the enquiry table when its service starts; this is not a general
+database migration system. Review and back up the database before deploying schema
+changes that need migrations.
+
+For a code rollback, revert the bad commit in Git, push the revert to `main`, then follow
+the matching static or backend deployment procedure above. Do not use `git reset` on the
+shared server checkout. Static deployment also restores its previous file backup
+automatically when its built-in checks fail.
