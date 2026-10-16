@@ -91,8 +91,8 @@
             </section>
           </div>
           <div class="container enquiry-panel">
-            <div><h2>Send an enquiry</h2><p>This is a sample form preview. It does not submit or store information. A verified institutional contact and approved form service are needed to enable submissions.</p></div>
-            <form id="enquiry-form" class="enquiry-form">
+            <div><h2>Send an enquiry</h2><p>Send us your enquiry using the form below. Fields marked with an asterisk are required.</p></div>
+            <form id="enquiry-form" class="enquiry-form" novalidate>
               <label for="enquiry-name">Full name <span aria-hidden="true">*</span>
                 <input id="enquiry-name" name="name" autocomplete="name" required aria-required="true" maxlength="150" />
               </label>
@@ -101,6 +101,9 @@
               </label>
               <label for="enquiry-email">Email address <span aria-hidden="true">*</span>
                 <input id="enquiry-email" name="email" type="email" autocomplete="email" required aria-required="true" maxlength="200" />
+              </label>
+              <label for="enquiry-mobile">Mobile number <span aria-hidden="true">*</span>
+                <input id="enquiry-mobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" required aria-required="true" maxlength="30" />
               </label>
               <label for="enquiry-nature">Nature of enquiry <span aria-hidden="true">*</span>
                 <select id="enquiry-nature" name="enquiry" required aria-required="true">
@@ -117,7 +120,7 @@
               <label for="enquiry-message" class="form-message">Message <span aria-hidden="true">*</span>
                 <textarea id="enquiry-message" name="message" rows="4" required aria-required="true" maxlength="3000"></textarea>
               </label>
-              <div class="form-actions"><button class="btn btn-primary" type="submit">Copy enquiry details</button><span id="form-status" role="status" aria-live="polite">Preview only; nothing is sent.</span></div>
+              <div class="form-actions"><button class="btn btn-primary" type="submit">Send enquiry</button><span id="form-status" class="form-status" role="status" aria-live="polite"></span></div>
             </form>
           </div>
         </section>

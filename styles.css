@@ -994,6 +994,11 @@ html[data-theme="high-contrast"] .footer-compliance {
 .enquiry-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .enquiry-form label { color: var(--muted); font-size: 0.88rem; }
 .enquiry-form textarea { resize: vertical; }
+.form-status { position: fixed; right: 24px; bottom: 24px; z-index: 1000; max-width: min(420px, calc(100vw - 48px)); padding: 12px 18px; border-radius: 10px; background: var(--surface, #fff); box-shadow: 0 8px 28px rgba(15, 40, 45, 0.18); font-size: 0.9rem; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity 160ms ease, transform 160ms ease; }
+.form-status.is-visible { opacity: 1; transform: translateY(0); }
+.form-status.is-success { color: #075c50; background: #e4f5f0; }
+.form-status.is-error { color: #8a2424; background: #fff0ee; }
+.enquiry-form button:disabled { opacity: 0.7; cursor: wait; }
 .enquiry-form input:focus, .enquiry-form select:focus, .enquiry-form textarea:focus, .filter-label select:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
 .form-message, .form-actions { grid-column: 1 / -1; }
 .form-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; }

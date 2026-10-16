@@ -114,28 +114,46 @@ function sanitizeFormString(str, maxLen = 1000) {
 }
 
 if (enquiryForm && formStatus) {
+  let toastTimer;
   enquiryForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const values = new FormData(enquiryForm);
-    const name = sanitizeFormString(values.get('name'), 150);
-    const org = sanitizeFormString(values.get('organisation'), 200) || 'Not provided';
-    const email = sanitizeFormString(values.get('email'), 200);
-    const enquiry = sanitizeFormString(values.get('enquiry'), 100);
-    const message = sanitizeFormString(values.get('message'), 3000);
+    if (!enquiryForm.reportValidity()) return;
 
-    const enquiryText = [
-      `Name: ${name}`,
-      `Organisation: ${org}`,
-      `Email: ${email}`,
-      `Nature of enquiry: ${enquiry}`,
-      `Message: ${message}`
-    ].join('\n');
+    const submitButton = enquiryForm.querySelector('[type="submit"]');
+    const values = new FormData(enquiryForm);
+    const payload = {
+      name: sanitizeFormString(values.get('name'), 150),
+      organisation: sanitizeFormString(values.get('organisation'), 200),
+      email: sanitizeFormString(values.get('email'), 200),
+      mobile: sanitizeFormString(values.get('mobile'), 30),
+      enquiry: sanitizeFormString(values.get('enquiry'), 100),
+      message: sanitizeFormString(values.get('message'), 3000)
+    };
+
+    submitButton.disabled = true;
+    window.clearTimeout(toastTimer);
+    formStatus.classList.remove('is-success', 'is-error');
+    formStatus.classList.add('is-visible');
+    formStatus.textContent = 'Sending…';
 
     try {
-      await navigator.clipboard.writeText(enquiryText);
-      formStatus.textContent = 'Enquiry details copied securely. Nothing was sent over the network.';
-    } catch {
-      formStatus.textContent = 'Copy was unavailable in this browser. Nothing was sent.';
+      const response = await fetch('/api/enquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || 'Unable to send your enquiry. Please try again.');
+
+      formStatus.textContent = 'Your enquiry was sent successfully.';
+      formStatus.classList.add('is-success');
+      enquiryForm.reset();
+    } catch (error) {
+      formStatus.textContent = error.message || 'Unable to send your enquiry. Please try again.';
+      formStatus.classList.add('is-error');
+    } finally {
+      submitButton.disabled = false;
+      toastTimer = window.setTimeout(() => formStatus.classList.remove('is-visible'), 5000);
     }
   });
 }

@@ -26,12 +26,18 @@ reviewed version.
 
 ## Run locally
 
-From the project folder, start the Python static server:
+The enquiry form and website are served together by the Python backend. Install its requirements from the project folder:
 
 ```bash
-python3 -m http.server 8000
+python -m pip install -r backend/requirements.txt
 ```
 
-Open <http://localhost:8000> in a browser. All pages and assets are served from the same project root, so the same relative paths work on every page.
+The supplied Neon connection string is configured in the private, Git-ignored `backend/.env` file. Run from the project folder:
 
-The enquiry form is a preview only: it copies entered details when clipboard access is available and does not send or store them. Official contact details remain marked “to be confirmed” until approved values are supplied.
+```bash
+python -m backend.app
+```
+
+Open <http://localhost:3000> in a browser. The backend creates the `enquires` table if it does not already exist and accepts form submissions at `/api/enquiries`.
+
+The form stores the submitted name, optional organisation, email, mobile number, nature of enquiry and message. Keep `backend/.env` private; it is excluded by `backend/.gitignore`. Official contact details remain marked “to be confirmed” until approved values are supplied.
