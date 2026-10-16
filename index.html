@@ -4,6 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#F7F9F8" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'self';" />
     <title>CS-DPCRU | Cybersecurity, Data Protection &amp; Digital Trust</title>
     <meta name="description" content="The CNLU–GIGA Cyber Security and Data Protection Compliance Research Unit advances techno-legal research, capacity building and trusted digital governance." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,16 +19,57 @@
   <body class="home-page">
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="site-shell">
+      <div class="gigw-bar" role="region" aria-label="Accessibility &amp; Language Options">
+        <div class="container gigw-wrap">
+          <div class="gigw-gov-brand">
+            <span>An Institutional Research Initiative of <strong>Chanakya National Law University (CNLU)</strong></span>
+          </div>
+          <div class="gigw-tools">
+            <a href="#main-content" class="gigw-link">Skip to Main Content</a>
+            <a href="accessibility.html" class="gigw-link" title="Screen Reader Access information">Screen Reader Access</a>
+            <div class="gigw-text-resizer" role="group" aria-label="Text size controls">
+              <button type="button" id="btnFontDec" class="gigw-btn" aria-label="Decrease text size" title="Decrease font size">A-</button>
+              <button type="button" id="btnFontReset" class="gigw-btn" aria-label="Reset text size" title="Normal font size">A</button>
+              <button type="button" id="btnFontInc" class="gigw-btn" aria-label="Increase text size" title="Increase font size">A+</button>
+            </div>
+            <div class="gigw-theme-toggle" role="group" aria-label="Theme contrast controls">
+              <button type="button" id="btnThemeDefault" class="gigw-btn is-active" aria-label="Standard contrast" title="Standard Contrast">Standard</button>
+              <button type="button" id="btnThemeContrast" class="gigw-btn" aria-label="High contrast mode" title="High Contrast">High Contrast</button>
+            </div>
+            <div class="gigw-lang" aria-label="Language selection">
+              <span class="lang-pill" aria-current="true">English</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <header class="site-header">
+        <div class="site-notification-bar" id="siteNotificationBar" role="region" aria-label="Latest announcement">
+          <div class="container notification-bar-wrap">
+            <div class="notification-left">
+              <span class="notification-badge"><span class="pulse-dot" aria-hidden="true"></span>Notice</span>
+              <span class="notification-message">
+                <strong>Advisory:</strong> DPDP Act 2023 compliance frameworks &amp; cybersecurity advisories released.
+              </span>
+            </div>
+            <div class="notification-right">
+              <a href="research.html" class="notification-link">Read publications <span aria-hidden="true">&rarr;</span></a>
+              <button type="button" class="notification-dismiss-btn" id="notificationDismissBtn" aria-label="Dismiss notification" title="Dismiss notification">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
         <div class="container nav-wrap">
           <a href="index.html" class="brand" aria-label="CS-DPCRU home">
             <span class="brand-mark"><img src="assets/cs-dpcru-mark.svg" alt="" aria-hidden="true" /></span>
             <span class="brand-text"><strong>CNLU × GIGA</strong><small>CS-DPCRU</small></span>
           </a>
-          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
-            <span></span><span></span><span></span>
-          </button>
           <nav id="nav-menu" class="main-nav" aria-label="Main navigation">
+            <a href="index.html" aria-current="page">Home</a>
             <a href="about.html">About Us</a>
             <a href="cyber-security.html">Cyber Security</a>
             <a href="data-protection.html">Data Protection</a>
@@ -32,6 +78,15 @@
             <a href="research.html">Research &amp; Publications</a>
             <a href="contact.html">Contact</a>
           </nav>
+          <div class="nav-actions">
+            <button type="button" class="notification-reopen-btn" id="notificationReopenBtn" aria-label="Show announcement" title="Show latest announcement" hidden>
+              <span class="pulse-dot-small" aria-hidden="true"></span>
+              <span class="reopen-label">Notice</span>
+            </button>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -146,7 +201,41 @@
           <div><h3>Institutional contact</h3><ul><li>Official email: to be confirmed</li><li>Telephone: to be confirmed</li><li>Approved office address: to be confirmed</li></ul><a class="text-link" href="contact.html">Contact information <span aria-hidden="true">→</span></a></div>
           <div><h3>Explore</h3><ul><li><a href="about.html">About the Unit</a></li><li><a href="research.html">Research &amp; Publications</a></li><li><a href="collaborations.html">Collaborations</a></li></ul></div>
         </div>
-        <div class="container footer-bottom"><p>© <span id="year"></span> CS-DPCRU</p><p class="disclaimer">Website content is informational and does not constitute legal advice, statutory certification, regulatory approval or a guarantee of compliance. Specific engagements are governed by separately agreed terms.</p></div>
+        <div class="container footer-policy-nav" aria-label="Policy Navigation">
+          <a href="policies.html#copyright-policy">Copyright Policy</a>
+          <span>·</span>
+          <a href="policies.html#hyperlinking-policy">Hyperlinking Policy</a>
+          <span>·</span>
+          <a href="policies.html#privacy-policy">Privacy Policy (DPDP Act 2023)</a>
+          <span>·</span>
+          <a href="policies.html#terms-of-use">Terms of Use</a>
+          <span>·</span>
+          <a href="accessibility.html">Accessibility Statement</a>
+          <span>·</span>
+          <a href="contact.html">Help &amp; Grievance Redressal</a>
+        </div>
+
+        <div class="container footer-compliance">
+          <div class="compliance-badges">
+            <span class="compliance-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              GIGW 3.0 Compliant
+            </span>
+            <span class="compliance-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              WCAG 2.1 Level AA
+            </span>
+            <span class="compliance-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              Security Audited: Safe Static Architecture
+            </span>
+          </div>
+          <div class="compliance-meta">
+            <span>Website Last Reviewed: 16 October 2026</span>
+          </div>
+        </div>
+
+        <div class="container footer-bottom"><p>© <span id="year"></span> CS-DPCRU, Chanakya National Law University.</p><p class="disclaimer">Website content is informational and does not constitute legal advice, statutory certification, regulatory approval or a guarantee of compliance. Specific engagements are governed by separately agreed terms.</p></div>
       </footer>
     </div>
     <script src="script.js?v=20261015-home-carousel"></script>

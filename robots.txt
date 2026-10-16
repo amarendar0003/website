@@ -1,0 +1,7 @@
+# Robots.txt for CS-DPCRU (CNLU)
+User-agent: *
+Allow: /
+Disallow: /website/
+Disallow: /.git/
+
+Sitemap: https://cs-dpcru.cnlu.ac.in/sitemap.xml

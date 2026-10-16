@@ -44,21 +44,32 @@ function renderPublications() {
 if (publicationFilter) publicationFilter.addEventListener('change', renderPublications);
 renderPublications();
 
+function sanitizeFormString(str, maxLen = 1000) {
+  if (!str || typeof str !== 'string') return '';
+  return str.trim().slice(0, maxLen).replace(/[\u0000-\u001F\u007F-\u009F]/g, '');
+}
+
 if (enquiryForm && formStatus) {
   enquiryForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const values = new FormData(enquiryForm);
+    const name = sanitizeFormString(values.get('name'), 150);
+    const org = sanitizeFormString(values.get('organisation'), 200) || 'Not provided';
+    const email = sanitizeFormString(values.get('email'), 200);
+    const enquiry = sanitizeFormString(values.get('enquiry'), 100);
+    const message = sanitizeFormString(values.get('message'), 3000);
+
     const enquiryText = [
-      `Name: ${values.get('name')}`,
-      `Organisation: ${values.get('organisation') || 'Not provided'}`,
-      `Email: ${values.get('email')}`,
-      `Nature of enquiry: ${values.get('enquiry')}`,
-      `Message: ${values.get('message')}`
+      `Name: ${name}`,
+      `Organisation: ${org}`,
+      `Email: ${email}`,
+      `Nature of enquiry: ${enquiry}`,
+      `Message: ${message}`
     ].join('\n');
 
     try {
       await navigator.clipboard.writeText(enquiryText);
-      formStatus.textContent = 'Enquiry details copied. Nothing was sent.';
+      formStatus.textContent = 'Enquiry details copied securely. Nothing was sent over the network.';
     } catch {
       formStatus.textContent = 'Copy was unavailable in this browser. Nothing was sent.';
     }
@@ -296,3 +307,94 @@ if (heroCanvas) {
     else motionPreference.addListener(updateMotion);
   }
 }
+
+// Persistent Top Notification Bar
+(function initNotificationBar() {
+  const notificationBar = document.getElementById('siteNotificationBar');
+  const dismissBtn = document.getElementById('notificationDismissBtn');
+  const reopenBtn = document.getElementById('notificationReopenBtn');
+  const STORAGE_KEY = 'cs_dpcru_notification_dismissed';
+
+  if (!notificationBar) return;
+
+  const isDismissed = sessionStorage.getItem(STORAGE_KEY) === 'true';
+
+  if (isDismissed) {
+    notificationBar.classList.add('is-hidden');
+    if (reopenBtn) reopenBtn.hidden = false;
+  } else {
+    notificationBar.classList.remove('is-hidden');
+    if (reopenBtn) reopenBtn.hidden = true;
+  }
+
+  if (dismissBtn) {
+    dismissBtn.addEventListener('click', () => {
+      notificationBar.classList.add('is-hidden');
+      sessionStorage.setItem(STORAGE_KEY, 'true');
+      if (reopenBtn) {
+        reopenBtn.hidden = false;
+        reopenBtn.focus();
+      }
+    });
+  }
+
+  if (reopenBtn) {
+    reopenBtn.addEventListener('click', () => {
+      notificationBar.classList.remove('is-hidden');
+      sessionStorage.removeItem(STORAGE_KEY);
+      reopenBtn.hidden = true;
+      const link = notificationBar.querySelector('.notification-link');
+      if (link) link.focus();
+    });
+  }
+})();
+
+// GIGW 3.0 Accessibility Controls: Font Resizer and High Contrast Theme
+(function initGIGWControls() {
+  const btnFontDec = document.getElementById('btnFontDec');
+  const btnFontReset = document.getElementById('btnFontReset');
+  const btnFontInc = document.getElementById('btnFontInc');
+  const btnThemeDefault = document.getElementById('btnThemeDefault');
+  const btnThemeContrast = document.getElementById('btnThemeContrast');
+
+  const FONT_KEY = 'cs_dpcru_font_scale';
+  const THEME_KEY = 'cs_dpcru_theme';
+
+  const fontScales = { dec: '90%', reset: '100%', inc: '112%' };
+
+  function applyFontScale(scale) {
+    document.documentElement.style.fontSize = scale;
+    try { localStorage.setItem(FONT_KEY, scale); } catch {}
+  }
+
+  function applyTheme(theme) {
+    if (theme === 'high-contrast') {
+      document.documentElement.setAttribute('data-theme', 'high-contrast');
+      if (btnThemeContrast) btnThemeContrast.classList.add('is-active');
+      if (btnThemeDefault) btnThemeDefault.classList.remove('is-active');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      if (btnThemeDefault) btnThemeDefault.classList.add('is-active');
+      if (btnThemeContrast) btnThemeContrast.classList.remove('is-active');
+    }
+    try { localStorage.setItem(THEME_KEY, theme); } catch {}
+  }
+
+  // Restore saved preferences
+  try {
+    const savedScale = localStorage.getItem(FONT_KEY);
+    if (savedScale) document.documentElement.style.fontSize = savedScale;
+
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    if (savedTheme) applyTheme(savedTheme);
+  } catch {}
+
+  if (btnFontDec) btnFontDec.addEventListener('click', () => applyFontScale(fontScales.dec));
+  if (btnFontReset) btnFontReset.addEventListener('click', () => applyFontScale(fontScales.reset));
+  if (btnFontInc) btnFontInc.addEventListener('click', () => applyFontScale(fontScales.inc));
+
+  if (btnThemeDefault) btnThemeDefault.addEventListener('click', () => applyTheme('default'));
+  if (btnThemeContrast) btnThemeContrast.addEventListener('click', () => applyTheme('high-contrast'));
+})();
+
+

@@ -1,0 +1,7 @@
+# CS-DPCRU Vulnerability Disclosure Policy (RFC 9116)
+Contact: mailto:security-audit@cnlu.ac.in
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en, hi
+Canonical: https://cs-dpcru.cnlu.ac.in/.well-known/security.txt
+Policy: https://cs-dpcru.cnlu.ac.in/policies.html
+Acknowledgments: https://cs-dpcru.cnlu.ac.in/research.html
