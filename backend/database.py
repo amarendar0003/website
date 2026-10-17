@@ -261,15 +261,16 @@ def seed_research_publications():
                     "technology regulation, public interest, digital platforms",
                 ),
             ]
-            connection.executemany(
-                """
-                INSERT INTO research_publications (
-                    title, slug, description, abstract, content, authors, category, document_type,
-                    publication_year, publication_date, document_format, pdf_url, file_url, file_size,
-                    is_published, is_archived, admin_only, keywords
-                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                """,
-                rows,
-            )
+            with connection.cursor() as cursor:
+                cursor.executemany(
+                    """
+                    INSERT INTO research_publications (
+                        title, slug, description, abstract, content, authors, category, document_type,
+                        publication_year, publication_date, document_format, pdf_url, file_url, file_size,
+                        is_published, is_archived, admin_only, keywords
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    """,
+                    rows,
+                )
     except Exception:
         logger.exception("Failed to seed research publications.")

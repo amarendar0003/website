@@ -50,17 +50,44 @@ Open <http://localhost:3001> in a browser. The backend creates the `enquires` ta
 
 The form stores the submitted name, optional organisation, email, mobile number, nature of enquiry and message. Keep `backend/.env` private; it is excluded by `backend/.gitignore`. Official contact details remain marked “to be confirmed” until approved values are supplied.
 
-## Research admin access
+## Research and publications
 
-Create a secure admin account using environment variables instead of hardcoded credentials:
+The Research page (`/research.html`) reads publication records from the PostgreSQL
+database through `GET /api/publications`. Visitors can search and filter by category,
+publication year, document type and author, sort results, and page through the results.
+Selecting a record opens its reader at `/publications/<id>`, which displays the available
+publication details and content and provides a PDF or document link when one is configured.
 
-```bash
-export ADMIN_USERNAME="admin"
-export ADMIN_PASSWORD="use-a-strong-random-password"
-export ADMIN_EMAIL="admin@example.com"
+The `research_publications` table stores publication metadata and content, including
+title, authors, category, document type, dates, abstract, keywords, publication status and
+document URLs. On an empty table, the backend seeds sample records. Only published,
+non-archived, public records appear in the visitor-facing API. The API also provides
+`GET /api/publications/<id>` for an individual public record.
+
+## Admin dashboard
+
+The admin interface is served at `/admin/` (login), `/admin/dashboard.html` (overview),
+and `/admin/publications.html` (publication management). Sign-in uses server-side Flask
+sessions; the dashboard and publication-management APIs require an authenticated session.
+Administrators can create, edit, publish, archive, and delete publication records. The
+dashboard summarizes publication counts and recent activity.
+
+Configure the initial administrator and session secret in the private `backend/.env` or
+the deployment environment before starting the backend:
+
+```dotenv
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=use-a-strong-random-password
+ADMIN_EMAIL=admin@example.com
+SECRET_KEY=use-a-long-random-secret
 ```
 
-The backend creates or updates the administrator if those values are present. Admin pages are served from `/admin/login.html` and `/admin/dashboard.html` and use server-side session checks.
+Use unique, strong values in production and keep them out of Git. The backend creates or
+updates the administrator account from `ADMIN_USERNAME`, `ADMIN_PASSWORD`, and
+`ADMIN_EMAIL` during database initialization. Admin authentication endpoints are
+`POST /api/admin/login`, `POST /api/admin/logout`, and `GET /api/admin/me`. Publication
+management endpoints are under `/api/admin/publications`; the dashboard data is available
+at `/api/admin/summary`.
 
 ## Deploy updates to the server
 
@@ -150,9 +177,10 @@ chat. A secret change must be applied securely to the server's
 `/home/git/cs-dpcru-source/backend/.env`, then restart the backend service and verify its
 health. Do not overwrite an existing server `.env` with a deployment archive.
 
-The backend initializes the enquiry table when its service starts; this is not a general
-database migration system. Review and back up the database before deploying schema
-changes that need migrations.
+The backend initializes the enquiry, admin, publication, and activity-log tables when its
+service starts and seeds sample publications only when the publication table is empty;
+this is not a general database migration system. Review and back up the database before
+deploying schema changes that need migrations.
 
 For a code rollback, revert the bad commit in Git, push the revert to `main`, then follow
 the matching static or backend deployment procedure above. Do not use `git reset` on the
