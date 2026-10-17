@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F7F9F8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com; frame-src 'self' https://translate.google.com; object-src 'self' data:;" />
+    <title>Publication Reader | CS-DPCRU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=20261017-publication-view" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <div class="gigw-bar" role="region" aria-label="Accessibility & language options">
+        <div class="container gigw-wrap">
+          <div class="gigw-gov-brand"><span>An Institutional Research Initiative of <strong>Chanakya National Law University (CNLU)</strong></span></div>
+          <div class="gigw-tools">
+            <a href="index.html" class="gigw-link">Home</a>
+            <div class="gigw-lang" aria-label="Language selection"><span class="lang-pill" aria-current="true">English</span></div>
+          </div>
+        </div>
+      </div>
+
+      <header class="site-header publication-view-header">
+        <div class="container nav-wrap">
+          <a href="index.html" class="brand" aria-label="CS-DPCRU home"><span class="brand-mark"><img src="assets/cs-dpcru-mark.svg" alt="" aria-hidden="true" /></span><span class="brand-text"><strong>CNLU × GIGA</strong><small>CS-DPCRU</small></span></a>
+          <nav class="main-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="research.html" aria-current="page">Research &amp; Publications</a></nav>
+        </div>
+      </header>
+
+      <main id="publication-view-page" class="publication-reader-shell">
+        <div class="container">
+          <div class="reader-topbar">
+            <a href="research.html" class="btn-tertiary">← Back to Research &amp; Publications</a>
+          </div>
+
+          <article id="publication-reader" class="publication-reader">
+            <div class="reader-loading" id="reader-loading">Loading publication…</div>
+            <div class="reader-error" id="reader-error" hidden></div>
+            <div id="reader-content" hidden>
+              <header class="reader-header">
+                <p class="eyebrow" id="reader-category">Category</p>
+                <h1 id="reader-title">Publication title</h1>
+                <div class="reader-meta">
+                  <span id="reader-authors">Author(s)</span>
+                  <span id="reader-date">Publication date</span>
+                </div>
+              </header>
+
+              <section class="reader-summary">
+                <h2>Summary</h2>
+                <p id="reader-description"></p>
+              </section>
+
+              <section class="reader-meta-grid">
+                <div><strong>Document type</strong><span id="reader-type"></span></div>
+                <div><strong>Keywords</strong><span id="reader-keywords"></span></div>
+              </section>
+
+              <section class="reader-abstract">
+                <h2>Abstract</h2>
+                <p id="reader-abstract"></p>
+              </section>
+
+              <section class="reader-body" id="reader-body"></section>
+
+              <section id="reader-pdf-panel" class="reader-pdf-panel" hidden>
+                <h2>PDF document</h2>
+                <iframe id="reader-pdf" title="PDF viewer" src="" loading="lazy"></iframe>
+                <div class="reader-download-wrap">
+                  <a id="reader-download" class="btn-primary" href="#" target="_blank" rel="noopener noreferrer">Download PDF</a>
+                </div>
+              </section>
+            </div>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

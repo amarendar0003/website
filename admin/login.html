@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self';" />
+    <title>Admin Sign In | CS-DPCRU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css?v=20261017-admin" />
+  </head>
+  <body class="admin-body">
+    <div class="admin-shell">
+      <main class="admin-login-card">
+        <div class="admin-panel-header">
+          <span class="eyebrow">Secure Access</span>
+          <h1>Research Admin</h1>
+        </div>
+        <form id="admin-login-form" class="admin-form">
+          <label>
+            <span>Username</span>
+            <input type="text" id="admin-username" name="username" autocomplete="username" required />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" id="admin-password" name="password" autocomplete="current-password" required />
+          </label>
+          <button type="submit" class="btn-primary btn-block">Sign In</button>
+          <p id="admin-login-status" class="form-status" aria-live="polite"></p>
+        </form>
+      </main>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

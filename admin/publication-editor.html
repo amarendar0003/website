@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self';" />
+    <title>Edit Publication | CS-DPCRU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css?v=20261017-admin" />
+  </head>
+  <body class="admin-body">
+    <div class="admin-shell admin-dashboard-shell">
+      <aside class="admin-sidebar">
+        <div class="brand admin-brand">
+          <span class="brand-mark"><img src="../assets/cs-dpcru-mark.svg" alt="" aria-hidden="true" /></span>
+          <span class="brand-text"><strong>CNLU × GIGA</strong><small>CS-DPCRU</small></span>
+        </div>
+        <nav class="admin-nav">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="publications.html" class="is-active">Publications</a>
+        </nav>
+        <button type="button" id="admin-logout" class="btn-secondary btn-block">Logout</button>
+      </aside>
+
+      <main class="admin-content">
+        <header class="admin-topbar">
+          <div>
+            <p class="eyebrow">Publication editor</p>
+            <h1 id="publication-editor-title">New publication</h1>
+          </div>
+          <a href="publications.html" class="btn-secondary">Back to list</a>
+        </header>
+
+        <form id="publication-editor-form" class="admin-form admin-editor-form">
+          <div class="form-grid">
+            <label>
+              <span>Title</span>
+              <input type="text" id="publication-title" name="title" required />
+            </label>
+            <label>
+              <span>Authors</span>
+              <input type="text" id="publication-authors" name="authors" required />
+            </label>
+            <label>
+              <span>Category</span>
+              <select id="publication-category-admin" name="category" required>
+                <option value="">Select category</option>
+                <option>Cybersecurity Law &amp; Policy</option>
+                <option>Data Protection &amp; Privacy</option>
+                <option>Data Governance &amp; National Security</option>
+                <option>AI &amp; Emerging Technologies</option>
+                <option>Digital Forensics &amp; Evidence</option>
+                <option>Technology Regulation</option>
+              </select>
+            </label>
+            <label>
+              <span>Document type</span>
+              <select id="publication-type-admin" name="document_type" required>
+                <option value="">Select type</option>
+                <option>Research Paper</option>
+                <option>Journal Article</option>
+                <option>Policy Brief</option>
+                <option>Research Report</option>
+                <option>Working Paper</option>
+                <option>Case Study</option>
+                <option>White Paper</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>
+              <span>Publication year</span>
+              <input type="number" id="publication-year-admin" name="publication_year" min="2000" max="2100" />
+            </label>
+            <label>
+              <span>Publication date</span>
+              <input type="date" id="publication-date-admin" name="publication_date" />
+            </label>
+            <label>
+              <span>Document format</span>
+              <select id="publication-format-admin" name="document_format">
+                <option>PDF</option>
+                <option>HTML</option>
+                <option>DOCX</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>
+              <span>File size</span>
+              <input type="text" id="publication-file-size" name="file_size" placeholder="1.2 MB" />
+            </label>
+            <label>
+              <span>Status</span>
+              <select id="publication-status-admin" name="status">
+                <option value="draft">Draft</option>
+                <option value="published">Published</option>
+                <option value="archived">Archived</option>
+              </select>
+            </label>
+            <label class="full-width">
+              <span>Short description</span>
+              <textarea id="publication-description" name="description" rows="3"></textarea>
+            </label>
+            <label class="full-width">
+              <span>Abstract</span>
+              <textarea id="publication-abstract" name="abstract" rows="5"></textarea>
+            </label>
+            <label class="full-width">
+              <span>Main content</span>
+              <textarea id="publication-content" name="content" rows="7"></textarea>
+            </label>
+            <label class="full-width">
+              <span>Keywords</span>
+              <input type="text" id="publication-keywords" name="keywords" placeholder="keyword 1, keyword 2" />
+            </label>
+            <label>
+              <span>PDF URL</span>
+              <input type="url" id="publication-pdf-url" name="pdf_url" placeholder="https://..." />
+            </label>
+            <label>
+              <span>Document file URL</span>
+              <input type="url" id="publication-file-url" name="file_url" placeholder="https://..." />
+            </label>
+          </div>
+          <div class="admin-editor-actions">
+            <button type="submit" class="btn-primary">Save publication</button>
+            <button type="button" id="delete-publication" class="btn-secondary btn-danger" hidden>Delete</button>
+          </div>
+          <p id="admin-editor-status" class="form-status" aria-live="polite"></p>
+        </form>
+      </main>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

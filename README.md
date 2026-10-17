@@ -50,6 +50,18 @@ Open <http://localhost:3001> in a browser. The backend creates the `enquires` ta
 
 The form stores the submitted name, optional organisation, email, mobile number, nature of enquiry and message. Keep `backend/.env` private; it is excluded by `backend/.gitignore`. Official contact details remain marked “to be confirmed” until approved values are supplied.
 
+## Research admin access
+
+Create a secure admin account using environment variables instead of hardcoded credentials:
+
+```bash
+export ADMIN_USERNAME="admin"
+export ADMIN_PASSWORD="use-a-strong-random-password"
+export ADMIN_EMAIL="admin@example.com"
+```
+
+The backend creates or updates the administrator if those values are present. Admin pages are served from `/admin/login.html` and `/admin/dashboard.html` and use server-side session checks.
+
 ## Deploy updates to the server
 
 The public site is at <http://103.169.178.87/website/>. The server Git checkout is

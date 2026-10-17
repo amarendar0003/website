@@ -665,3 +665,616 @@ if (heroCanvas) {
   if (btnThemeDefault) btnThemeDefault.addEventListener('click', () => applyTheme('default'));
   if (btnThemeContrast) btnThemeContrast.addEventListener('click', () => applyTheme('high-contrast'));
 })();
+
+function debounce(callback, wait) {
+  let timeoutId;
+  return (...args) => {
+    window.clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => callback(...args), wait);
+  };
+}
+
+function setFormStatus(element, message, type) {
+  if (!element) return;
+  element.textContent = message;
+  element.classList.remove('is-success', 'is-error');
+  if (type) element.classList.add(type);
+  element.classList.add('is-visible');
+}
+
+function getApiJson(url, options = {}) {
+  const requestOptions = {
+    headers: { Accept: 'application/json', ...(options.headers || {}) },
+    ...options,
+  };
+  if (options.body && !requestOptions.headers['Content-Type']) {
+    requestOptions.headers['Content-Type'] = 'application/json';
+  }
+  return fetch(url, requestOptions).then(async (response) => {
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(result.error || 'Request failed.');
+    }
+    return result;
+  });
+}
+
+function initResearchPage() {
+  const searchInput = document.getElementById('publication-search');
+  const categorySelect = document.getElementById('publication-category');
+  const yearSelect = document.getElementById('publication-year');
+  const typeSelect = document.getElementById('publication-type');
+  const authorSelect = document.getElementById('publication-author');
+  const sortSelect = document.getElementById('publication-sort');
+  const clearButton = document.getElementById('clear-filters');
+  const resultsCount = document.getElementById('results-count');
+  const publicationList = document.getElementById('publication-list');
+  const publicationEmpty = document.getElementById('publication-empty');
+  const pageContainer = document.getElementById('publication-pagination');
+  const totalPublications = document.getElementById('total-publications');
+
+  if (!searchInput && !categorySelect && !yearSelect && !typeSelect && !authorSelect && !sortSelect) return;
+
+  const state = {
+    page: 1,
+    search: '',
+    category: 'all',
+    year: 'all',
+    documentType: 'all',
+    author: 'all',
+    sort: 'newest'
+  };
+
+  function updateOptions(select, values, placeholder) {
+    if (!select) return;
+    const currentValue = select.value;
+    select.replaceChildren();
+    const defaultOption = document.createElement('option');
+    defaultOption.value = 'all';
+    defaultOption.textContent = placeholder;
+    select.append(defaultOption);
+    values.forEach((value) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = value;
+      select.append(option);
+    });
+    if (values.includes(currentValue)) {
+      select.value = currentValue;
+    } else {
+      select.value = 'all';
+    }
+  }
+
+  function renderPublicationCards(items) {
+    if (!publicationList) return;
+    publicationList.replaceChildren();
+
+    if (!items.length) {
+      if (publicationEmpty) publicationEmpty.hidden = false;
+      if (resultsCount) resultsCount.textContent = '0 matching publications';
+      return;
+    }
+
+    if (publicationEmpty) publicationEmpty.hidden = true;
+    items.forEach((item) => {
+      const card = document.createElement('article');
+      card.className = 'publication-card reveal';
+
+      const meta = document.createElement('div');
+      meta.className = 'publication-card-meta';
+      const category = document.createElement('span');
+      category.className = 'publication-tag';
+      category.textContent = item.category || 'Research';
+      meta.append(category);
+
+      const title = document.createElement('h3');
+      title.textContent = item.title;
+
+      const description = document.createElement('p');
+      description.className = 'publication-description';
+      description.textContent = item.description || item.abstract || 'No description available.';
+
+      const details = document.createElement('ul');
+      details.className = 'publication-details';
+      const detailsList = [
+        ['Authors', item.authors || 'Not specified'],
+        ['Type', item.document_type || 'Other'],
+        ['Year', item.publication_year || 'N/A'],
+        ['Date', item.publication_date ? new Date(item.publication_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : 'N/A'],
+        ['Format', item.document_format || 'PDF'],
+        ['File size', item.file_size || 'Not specified']
+      ];
+      detailsList.forEach(([label, value]) => {
+        const li = document.createElement('li');
+        const labelEl = document.createElement('strong');
+        labelEl.textContent = `${label}: `;
+        li.append(labelEl, document.createTextNode(String(value)));
+        details.append(li);
+      });
+
+      const actions = document.createElement('div');
+      actions.className = 'publication-card-actions';
+
+      const readLink = document.createElement('a');
+      readLink.href = `publication-view.html?id=${item.id}`;
+      readLink.className = 'btn-primary';
+      readLink.textContent = 'Read Document';
+
+      const downloadLink = document.createElement('a');
+      downloadLink.href = item.pdf_url || item.file_url || '#';
+      downloadLink.className = 'btn-secondary';
+      downloadLink.textContent = item.pdf_url || item.file_url ? 'Download PDF' : 'View file';
+      downloadLink.target = '_blank';
+      downloadLink.rel = 'noopener noreferrer';
+      if (!item.pdf_url && !item.file_url) {
+        downloadLink.setAttribute('aria-disabled', 'true');
+        downloadLink.style.pointerEvents = 'none';
+        downloadLink.style.opacity = '0.55';
+      }
+
+      actions.append(readLink, downloadLink);
+      card.append(meta, title, description, details, actions);
+      publicationList.append(card);
+    });
+  }
+
+  function renderPagination(totalPages, currentPage) {
+    if (!pageContainer) return;
+    pageContainer.replaceChildren();
+    if (totalPages <= 1) return;
+
+    const prevButton = document.createElement('button');
+    prevButton.type = 'button';
+    prevButton.textContent = 'Previous';
+    prevButton.disabled = currentPage <= 1;
+    prevButton.addEventListener('click', () => {
+      if (currentPage > 1) {
+        state.page = currentPage - 1;
+        loadPublications();
+      }
+    });
+    pageContainer.append(prevButton);
+
+    const pageDisplay = document.createElement('span');
+    pageDisplay.className = 'pagination-current';
+    pageDisplay.textContent = `Page ${currentPage} of ${totalPages}`;
+    pageContainer.append(pageDisplay);
+
+    const nextButton = document.createElement('button');
+    nextButton.type = 'button';
+    nextButton.textContent = 'Next';
+    nextButton.disabled = currentPage >= totalPages;
+    nextButton.addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        state.page = currentPage + 1;
+        loadPublications();
+      }
+    });
+    pageContainer.append(nextButton);
+  }
+
+  async function loadPublications() {
+    const params = new URLSearchParams({
+      search: state.search,
+      category: state.category,
+      year: state.year,
+      document_type: state.documentType,
+      author: state.author,
+      sort: state.sort,
+      page: String(state.page),
+      limit: '9'
+    });
+
+    try {
+      const data = await getApiJson(`/api/publications?${params.toString()}`);
+      const items = Array.isArray(data.publications) ? data.publications : [];
+      if (totalPublications) totalPublications.textContent = String(data.total || 0);
+      if (resultsCount) resultsCount.textContent = `${data.total || 0} matching publication${(data.total || 0) === 1 ? '' : 's'}`;
+      renderPublicationCards(items);
+      renderPagination(data.pages || 1, data.page || 1);
+
+      if (Array.isArray(data.categories)) {
+        updateOptions(categorySelect, data.categories, 'All categories');
+      }
+      if (Array.isArray(data.years)) {
+        updateOptions(yearSelect, data.years.map(String), 'All years');
+      }
+      if (Array.isArray(data.authors)) {
+        updateOptions(authorSelect, data.authors, 'All authors');
+      }
+    } catch (error) {
+      if (publicationEmpty) publicationEmpty.hidden = false;
+      if (resultsCount) resultsCount.textContent = 'Unable to load publications';
+      if (publicationList) publicationList.replaceChildren();
+    }
+  }
+
+  const handleFilterChange = () => {
+    state.search = searchInput ? searchInput.value.trim() : '';
+    state.category = categorySelect ? categorySelect.value : 'all';
+    state.year = yearSelect ? yearSelect.value : 'all';
+    state.documentType = typeSelect ? typeSelect.value : 'all';
+    state.author = authorSelect ? authorSelect.value : 'all';
+    state.sort = sortSelect ? sortSelect.value : 'newest';
+    state.page = 1;
+    loadPublications();
+  };
+
+  if (searchInput) {
+    searchInput.addEventListener('input', debounce(handleFilterChange, 250));
+  }
+  if (categorySelect) categorySelect.addEventListener('change', handleFilterChange);
+  if (yearSelect) yearSelect.addEventListener('change', handleFilterChange);
+  if (typeSelect) typeSelect.addEventListener('change', handleFilterChange);
+  if (authorSelect) authorSelect.addEventListener('change', handleFilterChange);
+  if (sortSelect) sortSelect.addEventListener('change', handleFilterChange);
+  if (clearButton) {
+    clearButton.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      if (categorySelect) categorySelect.value = 'all';
+      if (yearSelect) yearSelect.value = 'all';
+      if (typeSelect) typeSelect.value = 'all';
+      if (authorSelect) authorSelect.value = 'all';
+      if (sortSelect) sortSelect.value = 'newest';
+      state.search = '';
+      state.category = 'all';
+      state.year = 'all';
+      state.documentType = 'all';
+      state.author = 'all';
+      state.sort = 'newest';
+      state.page = 1;
+      loadPublications();
+    });
+  }
+
+  loadPublications();
+}
+
+function initPublicationViewer() {
+  const contentRoot = document.getElementById('reader-content');
+  if (!contentRoot) return;
+
+  const errorNode = document.getElementById('reader-error');
+  const loadingNode = document.getElementById('reader-loading');
+  const titleNode = document.getElementById('reader-title');
+  const categoryNode = document.getElementById('reader-category');
+  const authorsNode = document.getElementById('reader-authors');
+  const dateNode = document.getElementById('reader-date');
+  const descriptionNode = document.getElementById('reader-description');
+  const abstractNode = document.getElementById('reader-abstract');
+  const typeNode = document.getElementById('reader-type');
+  const keywordsNode = document.getElementById('reader-keywords');
+  const bodyNode = document.getElementById('reader-body');
+  const pdfPanel = document.getElementById('reader-pdf-panel');
+  const pdfFrame = document.getElementById('reader-pdf');
+  const downloadLink = document.getElementById('reader-download');
+
+  const params = new URLSearchParams(window.location.search);
+  const publicationId = params.get('id') || Number((window.location.pathname.split('/').filter(Boolean).pop() || '0'));
+
+  if (!publicationId) {
+    if (loadingNode) loadingNode.hidden = true;
+    if (errorNode) {
+      errorNode.hidden = false;
+      errorNode.textContent = 'No publication was selected to read.';
+    }
+    return;
+  }
+
+  getApiJson(`/api/publications/${publicationId}`)
+    .then((publication) => {
+      if (!publication) return;
+      if (titleNode) titleNode.textContent = publication.title || 'Untitled publication';
+      if (categoryNode) categoryNode.textContent = publication.category || 'Research';
+      if (authorsNode) authorsNode.textContent = publication.authors || 'Authors not specified';
+      if (dateNode) dateNode.textContent = publication.publication_date ? new Date(publication.publication_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Date not specified';
+      if (descriptionNode) descriptionNode.textContent = publication.description || publication.abstract || 'No description available.';
+      if (abstractNode) abstractNode.textContent = publication.abstract || 'No abstract has been supplied.';
+      if (typeNode) typeNode.textContent = publication.document_type || 'Other';
+      if (keywordsNode) keywordsNode.textContent = Array.isArray(publication.keywords) && publication.keywords.length ? publication.keywords.join(', ') : 'No keywords available';
+      if (bodyNode) {
+        const contentText = publication.content || publication.abstract || publication.description || '';
+        if (contentText) {
+          const paragraphs = contentText.split(/\n+/).map((segment) => segment.trim()).filter(Boolean);
+          bodyNode.replaceChildren();
+          paragraphs.forEach((paragraph) => {
+            const paragraphNode = document.createElement('p');
+            paragraphNode.textContent = paragraph;
+            bodyNode.append(paragraphNode);
+          });
+        } else {
+          bodyNode.innerHTML = '<p>Only a downloadable document is available for this publication. Use the download option below.</p>';
+        }
+      }
+      if (pdfPanel && (publication.pdf_url || publication.file_url)) {
+        const pdfSource = publication.pdf_url || publication.file_url;
+        pdfPanel.hidden = false;
+        if (pdfFrame) pdfFrame.src = pdfSource;
+        if (downloadLink) {
+          downloadLink.href = pdfSource;
+          downloadLink.textContent = publication.pdf_url ? 'Download PDF' : 'Download file';
+        }
+      }
+      if (loadingNode) loadingNode.hidden = true;
+      if (contentRoot) contentRoot.hidden = false;
+    })
+    .catch((error) => {
+      if (loadingNode) loadingNode.hidden = true;
+      if (errorNode) {
+        errorNode.hidden = false;
+        errorNode.textContent = error.message || 'This publication could not be loaded.';
+      }
+    });
+}
+
+function initAdminAuth() {
+  const usernameDisplay = document.getElementById('admin-username-display');
+  const logoutButtons = document.querySelectorAll('#admin-logout');
+  const loginForm = document.getElementById('admin-login-form');
+  const loginStatus = document.getElementById('admin-login-status');
+
+  if (loginForm) {
+    loginForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!loginForm.reportValidity()) return;
+      const formData = new FormData(loginForm);
+      const payload = {
+        username: String(formData.get('username') || '').trim(),
+        password: String(formData.get('password') || '')
+      };
+      try {
+        const result = await getApiJson('/api/admin/login', {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+        setFormStatus(loginStatus, result.message || 'Signed in successfully.', 'is-success');
+        window.setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 500);
+      } catch (error) {
+        setFormStatus(loginStatus, error.message || 'Unable to sign in.', 'is-error');
+      }
+    });
+  }
+
+  if (logoutButtons.length) {
+    logoutButtons.forEach((button) => {
+      button.addEventListener('click', async () => {
+        try {
+          await getApiJson('/api/admin/logout', { method: 'POST' });
+        } catch (error) {
+          // ignore logout failure and continue to the login page
+        }
+        window.location.href = 'login.html';
+      });
+    });
+  }
+
+  if (usernameDisplay) {
+    getApiJson('/api/admin/me')
+      .then((result) => {
+        usernameDisplay.textContent = result.username || 'Admin';
+      })
+      .catch(() => {
+        window.location.href = 'login.html';
+      });
+  }
+}
+
+async function initAdminDashboard() {
+  const isDashboard = document.body && window.location.pathname.endsWith('/dashboard.html');
+  const isPublicationsPage = document.body && window.location.pathname.endsWith('/publications.html');
+  const isEditorPage = document.body && window.location.pathname.endsWith('/publication-editor.html');
+  if (!isDashboard && !isPublicationsPage && !isEditorPage) return;
+
+  try {
+    await getApiJson('/api/admin/me');
+  } catch (error) {
+    window.location.href = 'login.html';
+    return;
+  }
+
+  if (isDashboard) {
+    const stats = [
+      ['stat-total', 'total_publications'],
+      ['stat-published', 'published_publications'],
+      ['stat-draft', 'draft_publications'],
+      ['stat-archived', 'archived_publications'],
+      ['stat-categories', 'total_categories']
+    ];
+    const summary = await getApiJson('/api/admin/summary');
+    stats.forEach(([id, key]) => {
+      const node = document.getElementById(id);
+      if (node) node.textContent = String(summary.totals?.[key] ?? 0);
+    });
+
+    const recentPublications = document.getElementById('recent-publications');
+    const recentActivity = document.getElementById('recent-activity');
+    if (recentPublications) {
+      const publications = summary.recent_publications || [];
+      recentPublications.replaceChildren();
+      if (!publications.length) {
+        recentPublications.innerHTML = '<p class="empty-state">No recent publications yet.</p>';
+      } else {
+        publications.forEach((item) => {
+          const row = document.createElement('div');
+          row.className = 'list-row';
+          const link = document.createElement('a');
+          link.href = `publication-editor.html?id=${item.id}`;
+          link.textContent = item.title;
+          const meta = document.createElement('span');
+          meta.textContent = `${item.category || 'Research'} · ${item.publication_date || 'Date unavailable'}`;
+          row.append(link, meta);
+          recentPublications.append(row);
+        });
+      }
+    }
+
+    if (recentActivity) {
+      const activity = summary.recent_activity || [];
+      recentActivity.replaceChildren();
+      if (!activity.length) {
+        recentActivity.innerHTML = '<p class="empty-state">No recent activity.</p>';
+      } else {
+        activity.forEach((event) => {
+          const row = document.createElement('div');
+          row.className = 'list-row';
+          const label = document.createElement('strong');
+          label.textContent = event.action.replace(/_/g, ' ');
+          const meta = document.createElement('span');
+          meta.textContent = `${event.actor || 'System'} · ${event.created_at || 'recently'}`;
+          row.append(label, meta);
+          recentActivity.append(row);
+        });
+      }
+    }
+  }
+
+  if (isPublicationsPage) {
+    const tableBody = document.getElementById('admin-publication-table-body');
+    const searchInput = document.getElementById('admin-publication-search');
+    const loadPublications = async () => {
+      const data = await getApiJson('/api/admin/publications');
+      const items = data.publications || [];
+      const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+      const filtered = !query ? items : items.filter((item) => {
+        const haystack = `${item.title} ${item.category} ${item.document_type} ${item.authors}`.toLowerCase();
+        return haystack.includes(query);
+      });
+
+      if (!tableBody) return;
+      tableBody.replaceChildren();
+      filtered.forEach((item) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><a href="publication-editor.html?id=${item.id}">${item.title}</a></td>
+          <td>${item.category || 'Research'}</td>
+          <td>${item.document_type || 'Other'}</td>
+          <td>${item.publication_year || '—'}</td>
+          <td>${item.is_archived ? 'Archived' : item.is_published ? 'Published' : 'Draft'}</td>
+          <td><a href="publication-editor.html?id=${item.id}" class="btn-link">Edit</a></td>
+        `;
+        tableBody.append(row);
+      });
+    };
+
+    if (searchInput) {
+      searchInput.addEventListener('input', debounce(loadPublications, 200));
+    }
+    loadPublications();
+  }
+
+  if (isEditorPage) {
+    const form = document.getElementById('publication-editor-form');
+    const statusNode = document.getElementById('admin-editor-status');
+    const deleteButton = document.getElementById('delete-publication');
+    const params = new URLSearchParams(window.location.search);
+    const publicationId = params.get('id');
+
+    if (publicationId) {
+      const publication = await getApiJson(`/api/admin/publications/${publicationId}`);
+      const formFields = {
+        title: document.getElementById('publication-title'),
+        authors: document.getElementById('publication-authors'),
+        category: document.getElementById('publication-category-admin'),
+        document_type: document.getElementById('publication-type-admin'),
+        publication_year: document.getElementById('publication-year-admin'),
+        publication_date: document.getElementById('publication-date-admin'),
+        document_format: document.getElementById('publication-format-admin'),
+        file_size: document.getElementById('publication-file-size'),
+        status: document.getElementById('publication-status-admin'),
+        description: document.getElementById('publication-description'),
+        abstract: document.getElementById('publication-abstract'),
+        content: document.getElementById('publication-content'),
+        keywords: document.getElementById('publication-keywords'),
+        pdf_url: document.getElementById('publication-pdf-url'),
+        file_url: document.getElementById('publication-file-url')
+      };
+      Object.entries(formFields).forEach(([key, element]) => {
+        if (!element) return;
+        const value = publication[key];
+        if (value === undefined || value === null) return;
+        if (key === 'status') {
+          element.value = publication.is_archived ? 'archived' : publication.is_published ? 'published' : 'draft';
+        } else if (key === 'keywords') {
+          element.value = Array.isArray(value) ? value.join(', ') : String(value || '');
+        } else if (key === 'document_type') {
+          element.value = value;
+        } else {
+          element.value = value;
+        }
+      });
+      const editorTitle = document.getElementById('publication-editor-title');
+      if (editorTitle) editorTitle.textContent = 'Edit publication';
+      if (deleteButton) deleteButton.hidden = false;
+
+      if (deleteButton) {
+        deleteButton.addEventListener('click', async () => {
+          if (!window.confirm('Delete this publication?')) return;
+          try {
+            await getApiJson(`/api/admin/publications/${publicationId}`, { method: 'DELETE' });
+            window.location.href = 'publications.html';
+          } catch (error) {
+            setFormStatus(statusNode, error.message || 'Unable to delete publication.', 'is-error');
+          }
+        });
+      }
+    }
+
+    if (form) {
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        const payload = {
+          title: document.getElementById('publication-title').value.trim(),
+          authors: document.getElementById('publication-authors').value.trim(),
+          category: document.getElementById('publication-category-admin').value,
+          document_type: document.getElementById('publication-type-admin').value,
+          publication_year: Number(document.getElementById('publication-year-admin').value || 0) || null,
+          publication_date: document.getElementById('publication-date-admin').value || null,
+          document_format: document.getElementById('publication-format-admin').value,
+          file_size: document.getElementById('publication-file-size').value.trim() || null,
+          status: document.getElementById('publication-status-admin').value,
+          description: document.getElementById('publication-description').value.trim(),
+          abstract: document.getElementById('publication-abstract').value.trim(),
+          content: document.getElementById('publication-content').value.trim(),
+          keywords: document.getElementById('publication-keywords').value.trim(),
+          pdf_url: document.getElementById('publication-pdf-url').value.trim() || null,
+          file_url: document.getElementById('publication-file-url').value.trim() || null,
+        };
+
+        try {
+          if (publicationId) {
+            await getApiJson(`/api/admin/publications/${publicationId}`, { method: 'PUT', body: JSON.stringify(payload) });
+            setFormStatus(statusNode, 'Publication updated successfully.', 'is-success');
+          } else {
+            const result = await getApiJson('/api/admin/publications', { method: 'POST', body: JSON.stringify(payload) });
+            setFormStatus(statusNode, result.message || 'Publication saved successfully.', 'is-success');
+            const newId = result.id;
+            if (newId) {
+              window.setTimeout(() => {
+                window.location.href = `publication-editor.html?id=${newId}`;
+              }, 500);
+            }
+          }
+        } catch (error) {
+          setFormStatus(statusNode, error.message || 'Unable to save publication.', 'is-error');
+        }
+      });
+    }
+  }
+}
+
+if (document.getElementById('publication-search') || document.getElementById('publication-category') || document.getElementById('publication-year') || document.getElementById('publication-type') || document.getElementById('publication-author') || document.getElementById('publication-sort')) {
+  initResearchPage();
+}
+
+if (document.getElementById('reader-content') || document.getElementById('reader-loading')) {
+  initPublicationViewer();
+}
+
+if (document.getElementById('admin-login-form') || document.getElementById('admin-logout') || document.getElementById('admin-username-display') || (document.body && (window.location.pathname.includes('/admin/') || window.location.pathname.endsWith('/admin')))) {
+  initAdminAuth();
+  initAdminDashboard();
+}

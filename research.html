@@ -75,8 +75,19 @@
         </div>
       </header>
       <main id="main-content">
-        <section class="section alt-bg">
-          <div class="container center reveal"><p class="eyebrow">Knowledge &amp; policy</p><h1>Research and Publications</h1><p class="section-intro">An intended programme combining legal analysis, policy research, comparative studies, technical collaboration and empirical inquiry.</p></div>
+        <section class="section alt-bg research-page">
+          <div class="container center reveal research-hero">
+            <p class="eyebrow">Knowledge &amp; policy</p>
+            <h1>Research &amp; Publications</h1>
+            <p class="section-intro">The CS-DPCRU research programme develops rigorous legal, policy and governance analysis on cybersecurity, digital rights, emerging technologies and institutional resilience.</p>
+            <div class="research-summary-row" aria-label="Research programme statistics">
+              <div class="summary-pill">
+                <strong id="total-publications">0</strong>
+                <span>Published documents</span>
+              </div>
+            </div>
+          </div>
+
           <div class="container feature-grid research-themes">
             <article class="info-card category-card category-research reveal"><h2>Cybersecurity law &amp; policy</h2><p>Cybercrime, incident reporting, digital evidence, resilience and security governance.</p></article>
             <article class="info-card category-card category-research reveal"><h2>Data protection &amp; privacy</h2><p>DPDP framework, comparative law, privacy governance, accountability and data principal rights.</p></article>
@@ -85,18 +96,88 @@
             <article class="info-card category-card category-research reveal"><h2>Digital forensics &amp; evidence</h2><p>Evidence collection, preservation, forensic integrity and courtroom challenges.</p></article>
             <article class="info-card category-card category-research reveal"><h2>Technology regulation</h2><p>Platforms, cloud, digital identity and the relationship between innovation, rights and public interest.</p></article>
           </div>
+
           <div class="container research-grid">
-            <article class="research-card category-card category-research reveal"><img src="assets/research-paper.svg" alt="Research paper illustration" /><span>Research papers</span><p>Peer-reviewed publications and working papers as they are completed and approved for release.</p></article>
-            <article class="research-card category-card category-research reveal"><img src="assets/research-policy.svg" alt="Policy brief illustration" /><span>Policy briefs</span><p>Concise, evidence-based recommendations intended for public discussion.</p></article>
-            <article class="research-card category-card category-research reveal"><img src="assets/research-toolkit.svg" alt="Compliance resource illustration" /><span>Compliance resources</span><p>Guidance notes, checklists and model frameworks developed through approved work.</p></article>
-            <article class="research-card category-card category-research reveal"><img src="assets/research-report.svg" alt="Research report illustration" /><span>Reports &amp; events</span><p>Project findings, event proceedings and learning resources when available.</p></article>
+            <article class="research-card category-card category-research reveal"><img src="assets/research-paper.svg" alt="Research paper illustration" /><span>Research papers</span><p>Peer-reviewed publications and expert analysis on legal and regulatory issues.</p></article>
+            <article class="research-card category-card category-research reveal"><img src="assets/research-policy.svg" alt="Policy brief illustration" /><span>Policy briefs</span><p>Short-form briefs translating evidence into actionable recommendations.</p></article>
+            <article class="research-card category-card category-research reveal"><img src="assets/research-toolkit.svg" alt="Compliance resource illustration" /><span>Compliance resources</span><p>Guidance notes, templates and implementation checklists for practitioners.</p></article>
+            <article class="research-card category-card category-research reveal"><img src="assets/research-report.svg" alt="Research report illustration" /><span>Reports &amp; events</span><p>Project findings, event notes and institutional learning resources.</p></article>
           </div>
+
           <div class="container publication-library">
-            <div class="library-heading"><div><p class="eyebrow">Publication library</p><h2>Explore verified outputs</h2></div><label class="filter-label" for="publication-filter">Filter by type<select id="publication-filter" aria-label="Filter publications by type"><option value="all">All types</option><option value="research">Research papers</option><option value="policy">Policy briefs</option><option value="resources">Compliance resources</option><option value="reports">Reports and events</option></select></label></div>
-            <div id="publication-list" class="publication-list" aria-live="polite"></div>
-            <p id="publication-empty" class="empty-state">No publications have been added yet. Verified research and project outputs will appear here once approved for release.</p>
+            <div class="library-heading reveal">
+              <div>
+                <p class="eyebrow">Publication library</p>
+                <h2>Explore verified outputs</h2>
+              </div>
+            </div>
+
+            <div class="filter-panel reveal" aria-label="Publication filters">
+              <div class="filter-row">
+                <label class="filter-field search-field">
+                  <span>Search</span>
+                  <input id="publication-search" type="search" placeholder="Search by title, author, keyword or summary" />
+                </label>
+
+                <label class="filter-field">
+                  <span>Category</span>
+                  <select id="publication-category">
+                    <option value="all">All categories</option>
+                  </select>
+                </label>
+
+                <label class="filter-field">
+                  <span>Year</span>
+                  <select id="publication-year">
+                    <option value="all">All years</option>
+                  </select>
+                </label>
+
+                <label class="filter-field">
+                  <span>Type</span>
+                  <select id="publication-type">
+                    <option value="all">All document types</option>
+                    <option value="Research Paper">Research Paper</option>
+                    <option value="Journal Article">Journal Article</option>
+                    <option value="Policy Brief">Policy Brief</option>
+                    <option value="Research Report">Research Report</option>
+                    <option value="Working Paper">Working Paper</option>
+                    <option value="Case Study">Case Study</option>
+                    <option value="White Paper">White Paper</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </label>
+
+                <label class="filter-field">
+                  <span>Author</span>
+                  <select id="publication-author">
+                    <option value="all">All authors</option>
+                  </select>
+                </label>
+
+                <label class="filter-field">
+                  <span>Sort</span>
+                  <select id="publication-sort">
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest first</option>
+                    <option value="title">Title A–Z</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="filter-actions">
+                <button type="button" id="clear-filters" class="btn-secondary">Clear filters</button>
+              </div>
+            </div>
+
+            <div class="meta-bar reveal">
+              <p id="results-count">0 matching publications</p>
+            </div>
+
+            <div id="publication-list" class="publication-grid" aria-live="polite"></div>
+            <p id="publication-empty" class="empty-state" hidden>No publications match the selected filters. Please try another combination.</p>
+            <div id="publication-pagination" class="publication-pagination" aria-label="Publication pagination"></div>
           </div>
-          <div class="container"><p class="scope-note scope-note-panel">Only verified publications, projects, certifications and events should be listed. Add actual outputs to the publication data in script.js with an approved title, category, date and link.</p></div>
         </section>
       </main>
       <footer class="site-footer">

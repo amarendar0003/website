@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self';" />
+    <title>Publications Management | CS-DPCRU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css?v=20261017-admin" />
+  </head>
+  <body class="admin-body">
+    <div class="admin-shell admin-dashboard-shell">
+      <aside class="admin-sidebar">
+        <div class="brand admin-brand">
+          <span class="brand-mark"><img src="../assets/cs-dpcru-mark.svg" alt="" aria-hidden="true" /></span>
+          <span class="brand-text"><strong>CNLU × GIGA</strong><small>CS-DPCRU</small></span>
+        </div>
+        <nav class="admin-nav">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="publications.html" class="is-active">Publications</a>
+        </nav>
+        <button type="button" id="admin-logout" class="btn-secondary btn-block">Logout</button>
+      </aside>
+
+      <main class="admin-content">
+        <header class="admin-topbar">
+          <div>
+            <p class="eyebrow">Content management</p>
+            <h1>Publications</h1>
+          </div>
+          <a href="publication-editor.html" class="btn-primary">Add publication</a>
+        </header>
+
+        <section class="admin-panel">
+          <div class="admin-panel-header">
+            <h2>Manage records</h2>
+          </div>
+          <div class="admin-toolbar">
+            <input id="admin-publication-search" type="search" placeholder="Search publications" />
+          </div>
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Type</th>
+                  <th>Year</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-publication-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>
